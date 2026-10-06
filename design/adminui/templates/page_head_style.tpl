@@ -23,5 +23,9 @@
 <link rel="stylesheet" type="text/css" href={'stylesheets/font-awesome.css'|ezdesign} />
 <link rel="stylesheet" type="text/css" href={'stylesheets/icomoon.css'|ezdesign} />
 <link rel="stylesheet" type="text/css" href={'stylesheets/style.css'|ezdesign} />
+{* the 16px root that the modules' rem sizes expect, with style.css's own rem rules kept at their size *}
+<link rel="stylesheet" type="text/css" href={'stylesheets/adminui-rem.css'|ezdesign} />
 {* this design's own additions: the Admin UI look for Exponential's markup (the Exponential UI widgets) *}
 <link rel="stylesheet" type="text/css" href={'stylesheets/adminui.css'|ezdesign} />
+{* module pages with stylesheets of their own (Exponential Layouts, Exponential UI widgets ...) in the Admin UI frame *}
+<link rel="stylesheet" type="text/css" href={'stylesheets/adminui-modules.css'|ezdesign} />

@@ -1,0 +1,18 @@
+/*!
+ * Exponential Admin UI: module pages that bring stylesheets of their own (written for the admin4 design) inside the
+ * Admin UI frame. Loaded last. Every rule is scoped to the module's own wrapper, so native Admin UI views are not
+ * touched. The copied style.css and the modules' stylesheets are not edited.
+ * GNU General Public License v2.0 (or any later version).
+ */
+
+/* ---- Exponential Layouts (explayouts_ui) --------------------------------------------------------------------- */
+/* the module wraps its pages in .ng-layouts-app.row: Bootstrap 3's .row (style.css) adds -15px side margins, which
+   pulled every page 15px past both edges of the main column */
+.main-content > .ng-layouts-app.row { margin-left: 0; margin-right: 0; }
+/* the page area: style.css gives it 30px padding on a whitesmoke ground; the module's admin4 stylesheet forces 10px on
+   white (with !important), which put the content against the column edges */
+.main-content > .ng-layouts-app .layouts-content { padding: 30px 30px 60px !important; background: whitesmoke !important; }
+/* the mappings list: style.css places it absolutely under the header (top: 164px, a scrolling pane), the module's
+   stylesheet keeps it in the flow (position: relative; top: 0 !important). Mixed, the list sat on top of the
+   header. In the flow it is here, with the reference's spacing. */
+.main-content > .ng-layouts-app .nl-rules { position: relative !important; top: 0 !important; left: auto; right: auto; bottom: auto; padding: 6px 0 30px; overflow: visible; }

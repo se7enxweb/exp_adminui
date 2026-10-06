@@ -1,0 +1,25 @@
+/*!
+ * Exponential Admin UI: the root font size. Generated from style.css; do not edit by hand.
+ * style.css (Bootstrap 3) sets html { font-size: 10px }. Exponential modules and widgets size their own
+ * stylesheets in rem for the browser's 16px root, and rendered at 62.5% inside the Admin UI. The root is
+ * 16px again here, and the 17 style.css rules that use rem are repeated with px values at its 10px root,
+ * so the Admin UI itself keeps its sizes. GNU General Public License v2.0 (or any later version).
+ */
+html { font-size: 16px; }
+.nl-modal-mask form[name="layout_wizard"] .nl-modal .layout-type { max-height: 200px; }
+.nl-modal-mask form[name="layout_wizard"] .nl-modal .layout-type .layout-type-item input[type='radio'] + label .icon { border-radius: 1.25px; }
+.nl-modal-mask form[name="layout_wizard"] .nl-modal .layout-type .layout-type-item input[type='radio']:checked + label .icon:after { font-size: 20px; width: 30px; height: 30px; line-height: 26px; border: 2px solid #fff; }
+.nl-modal-mask .nl-modal .choose-group-div .chosen-group { margin-right: 20px; }
+.nl-rule .nl-rule-head .rule-layout .icon-rule, .nl-rule .nl-rule-head .rule-layout .icon-rule-disabled { padding: 10px 10px 10px 0; }
+.nl-rule .nl-rule-head .rule-layout p { margin-top: 2.5px; }
+.nl-rule .nl-rule-body-overlay .nl-rule-body .sidebar-title { margin-bottom: 30px; }
+.nl-rule .nl-rule-body-overlay .nl-rule-body .nl-rule-description { margin-top: 30px; }
+.nl-rule .nl-rule-body-overlay .nl-rule-body .nl-layout-options { margin-top: 10px; }
+.nl-rule .nl-rule-body-overlay .nl-rule-body .nl-layout-options a { margin-right: 10px; }
+.nl-rule .nl-rule-body-overlay .nl-rule-body .nl-rule-setting { padding-top: 30px; margin-top: 30px; }
+.nl-rule .nl-rule-body-overlay .nl-rule-body .nl-rule-setting:last-child { padding-bottom: 30px; }
+.nl-group .nl-group-details-overlay .nl-group-details .settings-action { padding-bottom: 30px; }
+.nl-group .nl-group-details-overlay .nl-group-details .sidebar-title { margin-bottom: 30px; }
+.nl-group .nl-group-description { margin-top: 30px; }
+.nl-group .nl-group-head .group-title .icon-group, .nl-group .nl-group-head .group-title .icon-group-open, .nl-group .nl-group-head .group-title .icon-group-disabled, .nl-group .nl-group-head .group-title .icon-group-disabled-open { padding: 10px 10px 10px 0; }
+.nl-group .nl-group-head .group-title p { margin-top: 2.5px; }
