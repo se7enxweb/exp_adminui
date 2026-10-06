@@ -65,3 +65,15 @@
 #page .nl-ed-wait { color: #935700; }                                            /* #b26a00 on white, 4.24 */
 #page .pvf-badge-muted, #page .pvf-badges .label { background-color: #666; }      /* white on #777, 4.48 */
 #page .exp-dt-first:disabled, #page .exp-dt-prev:disabled, #page .exp-dt-next:disabled, #page .exp-dt-last:disabled { color: #767676; }  /* #a9a9a9, 2.35 */
+/* second pass, measured again: colours set through each module's own variables or inline styles */
+#page .xe-preview, #page .xe-view { --xe-muted: #535e6a; }                         /* xrowextract #66727f, 4.33 to 4.49 */
+#page .xe-handle { color: #5b6672; }                                              /* drag handle, 4.32 after the first pass */
+#page .gm-avatar { background-color: #8f5a33 !important; }                         /* set inline per author: white on #a66a3f, 4.42 */
+#page .sd-pills .sd-pill.warning { background-color: #9c5d00; }                    /* white on #c77700, 3.46 */
+#page .main-content span.text.disabled { color: #686868; }                         /* disabled pager label, #d0d0d0 */
+#page .ezx, #page .ezupdate-inv { --x-muted: #4f5d6e; --inv-muted: #4f5d6e;                /* ezupdate #66768a, 4.06 to 4.33 */
+    --x-accent: #2970ef; --x-accent-dark: #1862e6; --x-accent-ring: rgba(41, 112, 239, 0.18); --inv-accent: #2970ef; }  /* its own orange */
+#page .ezx-app-title .ezx-logo { background: linear-gradient(135deg, #1a5fd8, #2970ef); box-shadow: 0 2px 6px rgba(41, 112, 239, 0.35); }
+#page .ezupdate-tabs a:focus-visible { outline-color: #2970ef; }
+#page .ezupdate-inv-card.is-on { box-shadow: 0 0 0 3px rgba(41, 112, 239, 0.15); }
+#page .ezupdate-inv-search input:focus { box-shadow: 0 0 0 3px rgba(41, 112, 239, 0.18); }
