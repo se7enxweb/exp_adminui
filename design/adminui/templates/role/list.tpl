@@ -1,7 +1,5 @@
 <form name="roles" action={concat( $module.functions.list.uri, '/' )|ezurl} method="post" >
 
-    {let number_of_items=min( ezpreference( 'admin_role_list_limit' ), 3)|choose( 10, 10, 25, 50 )}
-
     <div class="context-block">
         {* DESIGN: Header START *}
         <div class="box-header">
@@ -13,30 +11,21 @@
         {* DESIGN: Content START *}
         <div class="box-content panel">
 
-            {* Items per page selector. *}
+            {* Items per page selector.
+
+               The sizes come from site.ini [RoleSettings] RolesPerPageList and the
+               preference stores the position in that list, so a site can offer the sizes
+               its own editors want without resetting anyone's choice. *}
             <div class="context-toolbar">
                 <div class="button-left">
                     <p class="btn-group">
-                        {switch match=$number_of_items}
-                            {case match=25}
-                                <a class="btn btn-default btn-sm" href={'/user/preferences/set/admin_role_list_limit/1'|ezurl}>10</a>
-                                <span  class="btn btn-default btn-sm active">25</span>
-                                <a class="btn btn-default btn-sm" href={'/user/preferences/set/admin_role_list_limit/3'|ezurl}>50</a>
-                            {/case}
-
-                            {case match=50}
-                                <a class="btn btn-default btn-sm" href={'/user/preferences/set/admin_role_list_limit/1'|ezurl}>10</a>
-                                <a class="btn btn-default btn-sm" href={'/user/preferences/set/admin_role_list_limit/2'|ezurl}>25</a>
-                                <span class="btn btn-default btn-sm active">50</span>
-                            {/case}
-
-                            {case}
-                                <span class="btn btn-default btn-sm active">10</span>
-                                <a class="btn btn-default btn-sm" href={'/user/preferences/set/admin_role_list_limit/2'|ezurl}>25</a>
-                                <a class="btn btn-default btn-sm" href={'/user/preferences/set/admin_role_list_limit/3'|ezurl}>50</a>
-                            {/case}
-
-                        {/switch}
+                        {foreach $limit_choices as $limit_index => $limit_option}
+                            {if eq( $limit_index|inc, $limit_choice )}
+                                <span class="btn btn-default btn-sm active">{$limit_option}</span>
+                            {else}
+                                <a class="btn btn-default btn-sm" href={concat( '/user/preferences/set/admin_role_list_limit/', $limit_index|inc )|ezurl}>{$limit_option}</a>
+                            {/if}
+                        {/foreach}
                     </p>
                 </div>
                 <div class="float-break"></div>
@@ -44,8 +33,11 @@
 
             <table class="list" cellspacing="0">
                 <tr>
-                    <th class="tight"><i class="fa fa-check-square-o" onclick="ezjs_toggleCheckboxes( document.roles, 'DeleteIDArray[]' ); return false;"></i></th>
-                    <th>{'Name'|i18n( 'design/admin/role/list' )}</th>
+                    <th class="tight"><i class="fa fa-check-square-o" title="{'Toggle selection'|i18n( 'design/admin/role/list' )}" onclick="ezjs_toggleCheckboxes( document.roles, 'DeleteIDArray[]' ); return false;"></i></th>
+                    {* Sorted by the database, because the list is shown a page at a time. The
+                       heading is the one the rss list and the locations tab use. *}
+                    {include uri='design:parts/sortheader.tpl' key='id'   label='ID'|i18n( 'design/admin/role/list' )   sort=$role_sort page_uri='/role/list' cell_class='tight'}
+                    {include uri='design:parts/sortheader.tpl' key='name' label='Name'|i18n( 'design/admin/role/list' ) sort=$role_sort page_uri='/role/list'}
                     <th class="tight">&nbsp;</th>
                     <th class="tight">&nbsp;</th>
                     <th class="tight">&nbsp;</th>
@@ -55,6 +47,7 @@
                     {let role_name=$Roles.item.name|wash}
                     <tr class="{$Roles.sequence}">
                     <td class="tight"><input type="checkbox" name="DeleteIDArray[]" value="{$Roles.item.id}" title="{'Select role for removal.'|i18n( 'design/admin/role/list' )}" /></td>
+                    <td class="role-id">{$Roles.item.id}</td>
                     <td>{'role'|icon( 'small', 'Role'|i18n( 'design/admin/role/list' ) )}&nbsp;<a href={concat( '/role/view/', $Roles.item.id)|ezurl}>{$role_name|wash}</a></td>
                     <td><a href={concat( '/role/assign/', $Roles.item.id)|ezurl}><i class="fa fa-plus-square-o" title="{'Assign the <%role_name> role to a user or a user group.'|i18n( 'design/admin/role/list',, hash( '%role_name', $role_name ) )|wash}"></i></a></td>
                     <td><a href={concat( '/role/copy/', $Roles.item.id)|ezurl}><i class="fa fa-clone" title="{'Copy the <%role_name> role.'|i18n( 'design/admin/role/list',, hash( '%role_name', $role_name ) )|wash}"></i></a></td>
@@ -71,7 +64,6 @@
                          item_count=$role_count
                          view_parameters=$view_parameters
                          item_limit=$limit}
-                {/let}
             </div>
 
             {* DESIGN: Content END *}
