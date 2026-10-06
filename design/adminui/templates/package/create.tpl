@@ -30,8 +30,11 @@
             {* DESIGN: Content END *}
             <div class="controlbar">
             {* DESIGN: Control bar START *}
-                <input class="btn btn-default" type="submit" name="CreatePackageButton" value="{'Create package'|i18n('design/admin/package')}" />
-
+                {* Back to the package list, which this page is reached from. Enter submits a form with its first button,
+                   which must stay Create package: this copy comes first and is never seen. *}
+                <input type="submit" name="CreatePackageButton" value="" tabindex="-1" aria-hidden="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;" />
+                <input class="btn btn-default" type="submit" formaction={'package/list'|ezurl} formmethod="get" value="{'%arrowleft Back'|i18n( 'design/admin/package',, hash( '%arrowleft', '&laquo;' ) )}" />
+                <input class="btn btn-primary" type="submit" name="CreatePackageButton" value="{'Create package'|i18n('design/admin/package')}" />
 
             {* DESIGN: Control bar END *}</div>
         </div>

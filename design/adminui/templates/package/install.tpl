@@ -16,8 +16,13 @@
 
             <div class="context-attributes">
 
+                <p class="install-wizard-links">
+                    <a href={concat( 'package/view/full/', $package.name )|ezurl}>{'Back to the package'|i18n('design/admin/package')}</a>
+                    &middot; <a href={'package/list'|ezurl}>{'Package list'|i18n('design/admin/package')}</a>
+                </p>
+
                 <p>{'The package can be installed on your system. Installing the package will copy files, create content classes etc., depending on the package.
-            If you do not want to install the package at this time, you can do so later on the view page for the package.'|i18n('design/admin/package')|break}</p>
+If you do not want to install the package at this time, you can do so later on the view page for the package.'|i18n('design/admin/package')|break}</p>
 
                 <h3>{'Install items'|i18n('design/admin/package')|break}</h3>
                 <ul>
@@ -30,10 +35,10 @@
             {* DESIGN: Content END *}
 
             <div class="controlbar">
-            {* DESIGN: Control bar START *}<div class="box-bc"><div class="box-ml">
+            {* DESIGN: Control bar START *}
                 <div class="block">
-                    <input class="button" type="submit" name="InstallPackageButton" value="{'Install package'|i18n('design/admin/package')}" />
-                    <input class="button" type="submit" name="SkipPackageButton" value="{'Skip installation'|i18n('design/admin/package')}" />
+                    <input class="btn btn-primary" type="submit" name="InstallPackageButton" value="{'Install package'|i18n('design/admin/package')}" />
+                    <input class="btn btn-default" type="submit" name="SkipPackageButton" value="{'Skip installation'|i18n('design/admin/package')}" />
                 </div>
             {* DESIGN: Control bar END *}
             </div>

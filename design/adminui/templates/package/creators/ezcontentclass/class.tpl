@@ -31,7 +31,7 @@
                     {foreach $class_list_by_group as $group_name => $group_classes}
                         <option disabled="disabled" value="group_{$group_name|wash}">{$group_name|wash}</option>
                         {foreach $group_classes as $class}
-                            <option value="{$class.id}">&nbsp;&nbsp;&nbsp;{$class.name|wash}</option>
+                            <option value="{$class.id}"{if and( is_set( $persistent_data.classlist ), $persistent_data.classlist|contains( $class.id ) )} selected="selected"{/if}>&nbsp;&nbsp;&nbsp;{$class.name|wash}</option>
                         {/foreach}
                     {/foreach}
                     </select>
