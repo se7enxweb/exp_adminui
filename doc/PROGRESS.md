@@ -42,6 +42,6 @@ reference at 1440, 960@2 and 390@2; diff % is the share of differing pixels at 1
 | Unactivated users | /user/unactivated | live | | |
 | Webshop | /shop/orderlist | live | | |
 | Login page | /user/login | live | | legacy Login/Password form in the reference markup |
-| Content edit | /content/edit/<id> | todo | | |
+| Content edit | /content/edit/<id> | live | | reference template; its YUI 3 right-column collapse replaced by jQuery |
 | Translations (Symfony translation editor) | /translations/ | gap | | no Exponential equivalent; left out of the side bar |
 | Lists by class | /classlists/list | gap | | ezclasslists is not active on alpha |
