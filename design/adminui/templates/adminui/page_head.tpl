@@ -2,13 +2,12 @@
    Favicons, the generator, the base path and the old admin's left/right menu sizes. *}
     <meta charset="utf-8" />
     <meta name="generator" content="{ezini( 'AdminUISettings', 'Title', 'exp_adminui.ini' )|wash}" />
-    <link rel="apple-touch-icon" sizes="180x180" href={'favicon/apple-touch-icon.png'|ezimage} />
-    <link rel="icon" type="image/png" href={'favicon/favicon-32x32.png'|ezimage} sizes="32x32" />
-    <link rel="icon" type="image/png" href={'favicon/favicon-16x16.png'|ezimage} sizes="16x16" />
-    <link rel="manifest" href={'favicon/manifest.json'|ezimage} />
-    <link rel="mask-icon" href={'favicon/safari-pinned-tab.svg'|ezimage} color="#f97b62" />
-    <link rel="shortcut icon" href={'favicon/favicon.ico'|ezimage} />
-    <meta name="msapplication-config" content={'favicon/browserconfig.xml'|ezimage} />
+    {* the Exponential mark (images/exponential/); the reference's favicon set, manifest and tile config carried its
+       own brand and are not linked *}
+    <link rel="apple-touch-icon" sizes="180x180" href={'exponential/apple-touch-icon.png'|ezimage} />
+    <link rel="icon" type="image/png" href={'exponential/favicon-32.png'|ezimage} sizes="32x32" />
+    <link rel="icon" type="image/png" href={'exponential/favicon-16.png'|ezimage} sizes="16x16" />
+    <link rel="shortcut icon" href={'exponential/favicon.ico'|ezimage} />
     <meta name="theme-color" content="#ffffff" />
     <meta name="ngadminui-base-path" content={'/'|ezurl} />
 {def $hide_left_menu      = first_set( $module_result.content_info.persistent_variable.left_menu, $content_edit|not )|not

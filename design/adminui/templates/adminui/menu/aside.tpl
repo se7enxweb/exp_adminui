@@ -12,23 +12,23 @@
 {if and( $plugins|contains( 'layouts' ), fetch( 'user', 'has_access_to', hash( 'module', 'explayouts_ui', 'function', 'read' ) ) )}
     <li{if eq( $navigation_part_identifier, 'ezexplayoutsuinavigationpart' )} class="active"{/if}>
         <a href={ezini( 'MenuPlugin_layouts', 'URL', 'exp_adminui.ini' )|ezurl}>
-            <img src={'menu/layouts-logo.svg'|ezimage} class="icon" />
-            <span class="tt">{'Netgen Layouts'|i18n( 'design/adminui/menu' )}</span>
+            <i class="fa fa-columns"></i>
+            <span class="tt">{'Layouts'|i18n( 'design/adminui/menu' )}</span>
         </a>
     </li>
 {/if}
 {if and( $plugins|contains( 'tags' ), fetch( 'user', 'has_access_to', hash( 'module', 'tags', 'function', 'read' ) ) )}
     <li{if eq( $navigation_part_identifier, 'eztagsnavigationpart' )} class="active"{/if}>
         <a href={ezini( 'MenuPlugin_tags', 'URL', 'exp_adminui.ini' )|ezurl}>
-            <img src={'menu/tags-logo.svg'|ezimage} class="icon" />
-            <span class="tt">{'Netgen Tags'|i18n( 'design/adminui/menu' )}</span>
+            <i class="fa fa-tags"></i>
+            <span class="tt">{'Tags'|i18n( 'design/adminui/menu' )}</span>
         </a>
     </li>
 {/if}
 {if and( $plugins|contains( 'information_collection' ), fetch( 'user', 'has_access_to', hash( 'module', 'infocollector', 'function', 'read' ) ) )}
     <li{if and( is_set( $module_result.uri ), $module_result.uri|begins_with( '/infocollector' ) )} class="active"{/if}>
         <a href={ezini( 'MenuPlugin_information_collection', 'URL', 'exp_adminui.ini' )|ezurl}>
-            <img src={'menu/ic-logo-silhouette.svg'|ezimage} class="icon" />
+            <i class="fa fa-inbox"></i>
             <span class="tt">{'Collected information'|i18n( 'design/adminui/menu' )}</span>
         </a>
     </li>

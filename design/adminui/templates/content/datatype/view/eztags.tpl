@@ -1,3 +1,4 @@
+{* Exponential Admin UI: the reference's tag list view, without its link to the Symfony tags admin (has_tags_bundle, symfony_path): tags link to the tags module. *}
 {if is_unset( $nice_urls )}{def $nice_urls = true()}{/if}
 
 {if $attribute.has_content}
@@ -15,7 +16,7 @@
         {foreach $attribute.content.tags as $tag}
             <img class="transparent-png-icon" src="{$tag.icon|tag_icon}" title="{$tag.keyword|wash}" alt="{$tag.keyword|wash}" />
 
-            <a href={if has_tags_bundle()}"{symfony_path('netgen_tags_admin_tag_show', hash( 'tagId', $tag.id ))}"{elseif $nice_urls}{$tag.url|ezurl}{else}{concat( 'tags/id/', $tag.id )|ezurl}{/if}>
+            <a href={if $nice_urls}{$tag.url|ezurl}{else}{concat( 'tags/id/', $tag.id )|ezurl}{/if}>
                 {$tag.keyword|wash}
             </a>
             {delimiter}, {/delimiter}

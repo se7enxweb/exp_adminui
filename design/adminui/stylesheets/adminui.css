@@ -97,3 +97,13 @@
 .exp-dt-body tr:first-child td { border-top: none; }
 .exp-dt-table tbody td { padding: 10px; border-bottom: 2px solid #f5f5f5; color: #4a4a4a; font-size: 1em; }
 .exp-dt-table tbody td a { color: #2970ef; }
+
+/* ---- Exponential branding (owner, 2026-10-06: no Netgen names or marks in the interface) -----------------------
+   style.css draws the logo per logo type (.logo-type-ngadminui, .logo-type-default); exp_adminui.ini LogoType=
+   exponential selects these: the Exponential mark in the dark header, the full logo on the dark login page, both
+   with white ink (images/exponential/, made from Exponential's own logo). */
+#header-logo.logo-type-exponential { background-image: url("../images/exponential/logo-mark-white.png"); background-size: 30px auto; }
+.loginpage .login-header .logo.logo-type-exponential { background-image: url("../images/exponential/logo-full-white.png"); width: 260px; }
+@media screen and (max-width: 800px) {
+    #header-logo.logo-type-exponential { background-size: 24px auto; }
+}

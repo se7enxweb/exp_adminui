@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{ezini( 'AdminUISettings', 'Title', 'exp_adminui.ini' )|wash}</title>
     <meta name="generator" content="{ezini( 'AdminUISettings', 'Title', 'exp_adminui.ini' )|wash}" />
-    <link rel="shortcut icon" href={'favicon/favicon.ico'|ezimage} />
+    <link rel="shortcut icon" href={'exponential/favicon.ico'|ezimage} />
     <link rel="stylesheet" type="text/css" href={'stylesheets/font-awesome.css'|ezdesign} />
     <link rel="stylesheet" type="text/css" href={'stylesheets/icomoon.css'|ezdesign} />
     <link rel="stylesheet" type="text/css" href={'stylesheets/style.css'|ezdesign} />
