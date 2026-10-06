@@ -19,7 +19,7 @@ reference at 1440, 960@2 and 390@2; diff % is the share of differing pixels at 1
 | Classes | /class/grouplist, /class/classlist/1, /class/view/1 | live | | |
 | Sections | /section/list | live | | |
 | Roles and policies | /role/list, /role/view/1 | live | | |
-| Trash | /content/trash | live | | admin4 template (the reference's needs YUI) |
+| Trash | /content/trash | live | | reference template (YUI class names only, no YUI code) |
 | Search | /content/search | live | | |
 | My drafts, bookmarks, pending items | /content/draft, /content/bookmark, /content/pendinglist | live | | |
 | Links | /url/list | live | | |
@@ -35,7 +35,7 @@ reference at 1440, 960@2 and 390@2; diff % is the share of differing pixels at 1
 | Upgrade check | /setup/systemupgrade | live | | |
 | Notification settings | /notification/settings | live | | |
 | History | /content/history/1 | live | | |
-| Tags | /tags/dashboard | live | | side bar "Netgen Tags" (reference: Symfony tags admin) |
+| Tags | /tags/dashboard | live | | reference template with eztags_children_table.tpl; side bar "Netgen Tags" (reference: Symfony tags admin) |
 | Layouts | /explayouts_ui/dashboard | live | | side bar "Netgen Layouts" (reference: Symfony layouts admin) |
 | Change password | /user/password | live | | |
 | Collaboration | /collaboration/view/summary | live | | |

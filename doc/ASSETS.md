@@ -16,10 +16,9 @@ Not copied on purpose (they need YUI, which Exponential 6 no longer ships; the a
 - `templates/content/datatype/edit/ezobjectrelation_ajaxuploader.tpl`
 - `templates/content/datatype/edit/ezobjectrelationlist_ajaxuploader.tpl`
 - `templates/content/edit.tpl`
-- `templates/content/trash.tpl`
 - `templates/tags/dashboard.tpl`
 
-5514 files.
+5515 files.
 
 | File in design/adminui | Source | Bytes | sha256 |
 |---|---|---|---|
@@ -5427,6 +5426,7 @@ Not copied on purpose (they need YUI, which Exponential 6 no longer ships; the a
 | `templates/content/translationnew.tpl` | legacy design | 3691 | `c9b44fd8723270c9ecd7869e8588e3d8b390926616bb8ea503a2760130865418` |
 | `templates/content/translations.tpl` | legacy design | 3913 | `69ea56d77794a8bce42eeec3a29f2507d0c0dfe5cb95aa90535524707406de7d` |
 | `templates/content/translationview.tpl` | legacy design | 13099 | `6066301067d12510acac38c8075da7e70fd4725597e093b2d8aa46ddc7074795` |
+| `templates/content/trash.tpl` | legacy design | 11557 | `9d75ac754573985a72c79d27a6fb2b8d9711c3485ae8028b860871c0b868b6a3` |
 | `templates/content/urlalias_global.tpl` | legacy design | 16826 | `60d94952367e95e28e5db03214d3a6163f6b1fb0e648ca10fa03c7d9632b411d` |
 | `templates/content/urlalias_wildcard.tpl` | legacy design | 10821 | `a139cbbeb86ffe1530b21db511263efbf599b2d4ece627c7ff32a9a7ce1fce8a` |
 | `templates/content/view/versioncontrol.tpl` | legacy design | 2585 | `3bc004d5cefb7acbb7f9174718c9268a59ade9b308ded60768211cbaaa42df13` |
