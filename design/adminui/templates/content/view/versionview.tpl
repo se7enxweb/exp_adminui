@@ -123,7 +123,7 @@
         <div class="preview-frame-container">
 
             <iframe src={concat("content/versionview/",$object.id,"/",$view_version.version,"/",$language, "/site_access/", $siteaccess )|ezurl} id="preview-frame">
-                Your browser does not support iframes. Please see this <a href={concat("content/versionview/",$object.id,"/",$view_version.version,"/",$language, "/site_access/", $siteaccess)|ezurl}>link</a> instead.
+                {'Your browser does not support iframes. Please see this <a href=%url>link</a> instead.'|i18n( 'design/admin/content/view/versionview',, hash( '%url', concat("content/versionview/",$object.id,"/",$view_version.version,"/",$language, "/site_access/", $siteaccess)|ezurl ) )}
             </iframe>
 
         </div>

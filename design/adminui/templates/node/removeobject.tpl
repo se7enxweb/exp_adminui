@@ -28,6 +28,14 @@
                     <p>{'Removal failed because there is pending sub object under the node. Please finish the relevant process then redo the removal.'|i18n( 'design/admin/node/removeobject' )}</p>
                 </div>
             {else}
+            {if and( is_set( $job_summary ), $job_summary )}
+                {include uri='design:content/job_summary.tpl' job_summary=$job_summary operation='remove'}
+            {/if}
+            {if and( is_set( $job_mode ), $job_mode|not, is_set( $run_as_job ), $run_as_job )}
+                <div class="message-feedback cj-job-notice">
+                    <p>{'This is a large removal. It runs in the background, in batches: you see its progress and can leave the page while it works.'|i18n( 'design/admin/content/job' )}</p>
+                </div>
+            {/if}
             {if $total_child_count|gt( 0 )}
             <div class="block">
                 <p>{'Some of the items that are about to be removed contain sub items.'|i18n( 'design/admin/node/removeobject' )}</p>
@@ -41,7 +49,7 @@
 
                 {if eq( $exceeded_limit, true() )}
                     <hr />
-                <h4>Warnings:</h4>
+                <h4>{'Warnings:'|i18n( 'design/admin/node/removeobject' )}</h4>
                     <p>{'The lines marked with red contain more than the maximum possible nodes for subtree removal and will not be deleted. You can remove this subtree using the ezsubtreeremove.php script.'|i18n( 'design/admin/node/removeobject' )}</p>
                 <hr />
                 {/if}
@@ -126,6 +134,10 @@
                         - {'Objects containing ezuser attributes can not be sent to trash'|i18n('design/admin/node/removeobject')}
                     {/if}
                 </p>
+                {if and( is_set( $job_mode ), $job_mode )}
+                    <p class="cj-trash-help">{'Moved to the trash, the items can be restored from the trash later. Without it they are deleted for good. Items you may not remove are marked in red above; then nothing is removed.'|i18n( 'design/admin/content/job' )}</p>
+                    {include uri='design:content/job_mode_choice.tpl' job_mode=$job_mode}
+                {/if}
 
             {/if}
             </div>

@@ -19,6 +19,8 @@
     </th>
 </tr>
 
+{include uri='design:content/browse_current_node.tpl' mode='list'}
+
 {section var=Nodes loop=$node_array sequence=array( bglight, bgdark )}
   <tr class="{$Nodes.sequence}">
     <td>

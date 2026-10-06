@@ -17,7 +17,11 @@
             // the link's onclick has already toggled .closed
             var menu = $( '.rightmenu' ), collapsed = menu.hasClass( 'closed' );
             menu.css( 'margin-right', collapsed ? '-222px' : '0' );
-            if ( $.ez && $.ez.setPreference ) $.ez.setPreference( 'admin_edit_menu_collapsed', collapsed ? 1 : 0 );
+            // remembered per user, as Exponential's own edit page does it (Exponential UI preferences)
+            if ( window.Exp && window.Exp.prefs && window.Exp.prefs.set )
+                window.Exp.prefs.set( 'admin_edit_menu_collapsed', collapsed ? 1 : 0 ).catch( function () {} );
+            else if ( $.ez && $.ez.setPreference )
+                $.ez.setPreference( 'admin_edit_menu_collapsed', collapsed ? 1 : 0 );
         } );
     } );
     {/literal}
