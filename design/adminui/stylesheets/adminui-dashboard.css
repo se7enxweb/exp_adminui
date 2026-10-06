@@ -1,0 +1,122 @@
+/* Exponential Admin UI: the dashboard (templates/content/dashboard.tpl). admin4's dashboard widgets -- welcome with
+   quick actions, key figures, the last 14 days of publishing, the system panel, "Stay secure" and the configured
+   dashboard blocks -- in the Admin UI look: flat panels with a light rule, Roboto at the Admin UI's weights, the grey
+   band of the Admin UI page headers, Bootstrap 3 buttons and the Admin UI blue (#2970ef) as the one accent.
+   adminui does not load admin4.css; everything the dashboard needs is here. */
+
+.aui-dashboard {
+  --aui-blue: #2970ef;
+  --aui-blue-dark: #1057d5;
+  --aui-blue-soft: rgba(41, 112, 239, 0.08);
+  --aui-ink: #333;
+  --aui-text: #4a4a4a;
+  --aui-muted: #6b6b6b;
+  --aui-line: #e4e4e4;
+  --aui-band: #f3f3f3;
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.aui-dashboard > * { min-width: 0; }
+
+/* ---- Welcome: the grey band of an Admin UI page header ---- */
+.aui-dash-hero {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 24px;
+  padding: 20px 20px 18px; background: var(--aui-band); border-left: 3px solid var(--aui-blue);
+}
+.aui-dash-hero-text { min-width: 0; }
+.aui-dash-date {
+  margin: 0; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--aui-muted);
+}
+.aui-dashboard .aui-dash-hero h1 { margin: 4px 0 4px; font-size: 26px; line-height: 1.25; font-weight: 400; color: var(--aui-ink); }
+.aui-dash-sub { margin: 0; color: var(--aui-muted); }
+.aui-dash-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.aui-dash-actions .btn { white-space: nowrap; }
+.aui-dash-actions .btn .fa { margin-right: 4px; }
+
+/* ---- Key figures: one small panel each ---- */
+.aui-dash-figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.aui-dashboard .aui-dash-figure {
+  position: relative; display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 14px 16px;
+  border: 1px solid var(--aui-line); border-radius: 2px; box-shadow: none; background: #fff;
+  color: var(--aui-muted); text-decoration: none; transition: border-color 150ms ease-in-out, background-color 150ms ease-in-out;
+}
+.aui-dashboard a.aui-dash-figure:hover,
+.aui-dashboard a.aui-dash-figure:focus { border-color: var(--aui-blue); background: #f5f5f5; color: var(--aui-muted); text-decoration: none; }
+.aui-dash-figure .fa { position: absolute; top: 14px; right: 14px; font-size: 16px; color: #8a8a8a; }
+.aui-dash-figure strong { font-size: 28px; line-height: 1.1; font-weight: 300; color: var(--aui-ink); font-variant-numeric: tabular-nums; }
+.aui-dash-figure span { font-size: 13px; line-height: 1.35; color: var(--aui-muted); }
+.aui-dashboard .aui-dash-figure.aui-accent { border-color: var(--aui-blue); background: var(--aui-blue-soft); }
+.aui-dash-figure.aui-accent strong, .aui-dash-figure.aui-accent .fa { color: var(--aui-blue-dark); }
+
+/* ---- Cards: the Admin UI .panel (20px, white) with its .panel-hl heading strip, framed by a light rule ---- */
+.aui-dashboard .aui-dash-card {
+  min-width: 0; margin: 0; padding: 20px; border: 1px solid var(--aui-line); border-radius: 2px; box-shadow: none; background: #fff;
+}
+.aui-dashboard .aui-dash-card > .panel-hl { margin: -20px -20px 16px; padding: 12px 20px; }
+.aui-dashboard .aui-dash-card > .panel-hl h2 { margin: 0; font-size: 16px; font-weight: 500; line-height: 1.4; color: var(--aui-ink); }
+.aui-dash-body { min-width: 0; }
+
+.aui-dash-row { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 20px; }
+@media (max-width: 1100px) { .aui-dash-row { grid-template-columns: minmax(0, 1fr); } }
+
+/* the 14-day chart */
+.aui-dashboard .aui-dash-activity { display: flex; flex-direction: column; }
+.aui-dash-activity > .aui-dash-body { flex: 1 1 auto; display: flex; flex-direction: column; }
+.aui-dash-bars { flex: 1 1 auto; display: flex; align-items: flex-end; gap: 6px; height: auto; min-height: 180px; padding-top: 18px; }
+.aui-dash-bar { position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; }
+.aui-dash-bar-fill { width: 100%; max-width: 26px; min-height: 0; border-radius: 2px 2px 0 0; background: var(--aui-blue); }
+.aui-dash-bar:hover .aui-dash-bar-fill { background: var(--aui-blue-dark); }
+.aui-dash-bar-value { font-size: 11px; font-weight: 500; color: var(--aui-muted); margin-bottom: 3px; }
+.aui-dash-bar-day { margin-top: 6px; padding-top: 4px; width: 100%; text-align: center; border-top: 1px solid var(--aui-line); font-size: 11px; color: var(--aui-muted); }
+.aui-dash-bar:last-child .aui-dash-bar-day { color: var(--aui-blue-dark); font-weight: 700; }
+
+/* the system panel: the maintenance notice, the facts, the links */
+.aui-dash-system #dashboard-logo,
+.aui-dash-system #mainteinance-text h2 { display: none; }
+.aui-dash-system #mainteinance-text { margin: 0; font-size: 14px; }
+.aui-dash-system #mainteinance-text p { margin: 0 0 8px; color: var(--aui-text); font-size: 14px; line-height: 1.5; }
+.aui-dash-system #mainteinance-text a { color: var(--aui-blue); }
+.aui-dashboard table.list.aui-dash-facts { width: 100%; margin: 12px 0 14px; }
+.aui-dashboard table.list.aui-dash-facts td { padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+.aui-dashboard table.list.aui-dash-facts td:first-child { width: 40%; color: var(--aui-muted); }
+.aui-dashboard table.list.aui-dash-facts td + td { font-weight: 500; color: var(--aui-ink); }
+.aui-dash-links { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+
+/* ---- Stay secure ---- */
+.aui-dashboard .aui-dash-secure { border-top: 3px solid var(--aui-blue); }
+.aui-dash-secure .panel-hl h2 .fa { color: var(--aui-blue); margin-right: 4px; }
+.aui-dash-secure-intro { margin: 0 0 14px; color: var(--aui-text); max-width: 75ch; }
+.aui-dash-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.aui-dash-steps > li { display: flex; gap: 12px; min-width: 0; padding: 14px 16px; border: 1px solid var(--aui-line); background: #fafafa; }
+.aui-dash-steps > li > div { min-width: 0; }
+.aui-dash-step-no {
+  flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%; background: var(--aui-blue); color: #fff; font-weight: 500;
+}
+.aui-dashboard .aui-dash-steps h3 { margin: 3px 0 6px; font-size: 15px; font-weight: 500; color: var(--aui-ink); }
+.aui-dash-steps p { margin: 0 0 10px; color: var(--aui-text); line-height: 1.5; }
+.aui-dash-steps .btn { white-space: normal; text-align: left; }
+.aui-dash-step-note { font-style: italic; }
+
+/* ---- The configured blocks ---- */
+.aui-dash-blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); gap: 20px; align-items: start; }
+.aui-dash-blocks .aui-dash-card > .aui-dash-body { overflow-x: auto; }
+.aui-dash-blocks .aui-dash-block-all_latest_content,
+.aui-dash-blocks .aui-dash-block-latest_content { grid-column: 1 / -1; }
+.aui-dashboard .aui-dash-card.dashboard-item { border: 1px solid var(--aui-line); }
+.aui-dash-block .aui-dash-body > h2:first-child,
+.aui-dash-block .aui-dash-body > div > h2:first-child { margin-top: 0; }
+.aui-dash-block table.list { width: 100%; }
+
+@media (max-width: 600px) {
+  .aui-dash-hero { padding: 16px; }
+  .aui-dashboard .aui-dash-hero h1 { font-size: 22px; }
+  .aui-dash-blocks { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* the legacy maintenance text paints the version and edition in the old orange; the Admin UI blue here */
+.aui-dash-system #mainteinance-text #ez-version,
+.aui-dash-system #mainteinance-text .edition-info { color: var(--aui-blue-dark); font-weight: 500; }
+/* the audit block's alert note keeps its warning tint: its link takes the note's own dark ink */
+.aui-dashboard .au-dash .au-note a { color: #8a3a0c; }

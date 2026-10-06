@@ -29,3 +29,4 @@
 <link rel="stylesheet" type="text/css" href={'stylesheets/adminui.css'|ezdesign} />
 {* module pages with stylesheets of their own (Exponential Layouts, Exponential UI widgets ...) in the Admin UI frame *}
 <link rel="stylesheet" type="text/css" href={'stylesheets/adminui-modules.css'|ezdesign} />
+<link rel="stylesheet" type="text/css" href={'stylesheets/adminui-dashboard.css'|ezdesign} />
