@@ -16,3 +16,32 @@
    stylesheet keeps it in the flow (position: relative; top: 0 !important). Mixed, the list sat on top of the
    header. In the flow it is here, with the reference's spacing. */
 .main-content > .ng-layouts-app .nl-rules { position: relative !important; top: 0 !important; left: auto; right: auto; bottom: auto; padding: 6px 0 30px; overflow: visible; }
+/* Components: the template fixes the list at min-width 1040px, wider than the Admin UI's main column at 200% zoom
+   (960px window: 620px left beside the side bar and the left column), so the table ran out of the column. Below
+   that width the list may shrink, and the module's own card layout (its @container nl-components rules) takes over. */
+@container nl-components (max-width: 1040px) {
+    .main-content > .ng-layouts-app .nl-components-list { min-width: 0 !important; }
+}
+/* the header cells kept breaking inside words (COU|NT, EDI|T) */
+.main-content > .ng-layouts-app .nl-component-header > div { white-space: nowrap; overflow-wrap: normal; word-break: normal; }
+/* the page area is a flex item of .ng-layouts-app; without min-width: 0 it kept the width of its widest form (rule
+   edit: 813px in a 620px column at 200% zoom) and ran past the window */
+.main-content > .ng-layouts-app > .layouts-content { min-width: 0; flex: 1 1 auto; }
+.main-content > .ng-layouts-app .layouts-content form, .main-content > .ng-layouts-app .layouts-content input,
+.main-content > .ng-layouts-app .layouts-content select, .main-content > .ng-layouts-app .layouts-content textarea { max-width: 100%; }
+/* tables of the Layouts forms (rule edit's targets and conditions) scroll inside the page area when the column is
+   narrower than they are, instead of running past the window */
+.main-content > .ng-layouts-app .layouts-content table.list { display: block; max-width: 100%; overflow-x: auto; }
+/* readable text on the Layouts pages: the module's pale greys and the Admin UI blue on tinted rows stayed under the
+   WCAG AA ratio (4.5:1); the same hues, darkened just enough */
+.main-content > .ng-layouts-app .nl-layout-modified p { color: #6b6b6b; }                 /* was #999 on white, 2.85 */
+.main-content > .ng-layouts-app .meta-info, .main-content > .ng-layouts-app .meta-info span,
+.main-content > .ng-layouts-app .meta-info .material-icons { color: #3d3d3d; }              /* was #666 on #d4d4d4, 3.87 */
+.main-content > .ng-layouts-app .used-in-item-style { color: #5f5f5f; }                     /* was #888 on #f8f8f8, 3.34 */
+.main-content > .ng-layouts-app .nl-stat-label, .main-content > .ng-layouts-app th { color: #666; }  /* was #777, 4.48 */
+.main-content > .ng-layouts-app .nl-component__name a, .main-content > .ng-layouts-app .used-in-item-name a,
+.main-content > .ng-layouts-app .nl-rule-cell > a, .main-content > .ng-layouts-app .pagination a .text { color: #1a5fd8; }  /* #2970ef on tints, 4.1 to 4.25 */
+/* the pager under the Layouts lists and the import page's introduction */
+#page.ezexplayoutsuinavigationpart .main-content a > span.text { color: #1a5fd8; }              /* #2970ef on whitesmoke, 4.13 */
+#page.ezexplayoutsuinavigationpart .main-content span.text.disabled { color: #686868; }       /* was #d0d0d0, 1.41 */
+#page.ezexplayoutsuinavigationpart .main-content .layouts-header > p { color: #5f5f5f; }      /* was #9d9d9d, 2.49 */
