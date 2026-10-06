@@ -1,0 +1,22 @@
+{
+    "name": "se7enxweb/exp_adminui",
+    "description": "Exponential Admin UI: the Admin UI look and layout (ported from Netgen Admin UI) for the Exponential administration, served by its own adminui siteaccess on top of the admin4l design",
+    "type": "ezpublish-legacy-extension",
+    "keywords": [ "Exponential", "Exponential 6", "legacy extension", "administration", "admin UI", "siteaccess", "design" ],
+    "homepage": "https://github.com/se7enxweb/exp_adminui",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        { "name": "7x", "homepage": "https://se7enx.com", "email": "info@se7enx.com", "role": "Author" }
+    ],
+    "support": {
+        "issues": "https://github.com/se7enxweb/exp_adminui/issues",
+        "source": "https://github.com/se7enxweb/exp_adminui"
+    },
+    "require": {
+        "php": ">=8.0",
+        "se7enxweb/ezpublish-legacy-installer": "*"
+    },
+    "extra": {
+        "ezpublish-legacy-extension-name": "exp_adminui"
+    }
+}
