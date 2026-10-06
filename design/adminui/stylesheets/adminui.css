@@ -107,3 +107,24 @@
 @media screen and (max-width: 800px) {
     #header-logo.logo-type-exponential { background-size: 24px auto; }
 }
+
+/* sortable column heads (parts/sortheader.tpl and the like) inside the Admin UI's grey table head: the link blue was
+   1.87:1 there; white like the head's own text, underlined on hover */
+table th a, table th a:visited, table th a.sort-link, table th a .sort-arrow { color: #fff; }
+table th a:hover { color: #fff; text-decoration: underline; }
+
+/* ---- accent colour (owner, 2026-10-06): inside the Admin UI, Exponential's orange accent becomes the Admin UI blue.
+   Exponential's admin pages draw their accents from these tokens (admin4.css defines them as orange, and adminui does
+   not load admin4.css, so they fell back to their orange defaults); Exponential UI widgets use --exp-accent*.
+   Defined here they only apply in the adminui design: admin4, admin4l and the site keep the orange. */
+:root {
+    --a4-orange: #2970ef; --a4-orange-dark: #1862e6; --a4-orange-soft: rgba(41, 112, 239, 0.12);
+    --exp-accent: #2970ef; --exp-accent-dark: #1862e6; --exp-accent-ring: rgba(41, 112, 239, 0.18);
+}
+/* the redesigned pages with an accent of their own (languages, maintenance, sections, workflow processes, cronjobs,
+   states: #c2410c, white text on it 5.2:1). The blue here keeps white text on it above 5.5:1. */
+#page .exp-languages, #page .exp-maintenance, #page .exp-sections, #page .exp-processes, #page .exp-cronjobs, #page .exp-states {
+    --lg-accent: #1a5fd8; --lg-accent-hover: #1450b8; --mt-accent: #1a5fd8; --mt-accent-hover: #1450b8;
+    --sc-accent: #1a5fd8; --sc-accent-hover: #1450b8; --wf-accent: #1a5fd8; --wf-accent-hover: #1450b8;
+    --cj-accent: #1a5fd8; --cj-accent-hover: #1450b8; --st-accent: #1a5fd8; --st-accent-hover: #1450b8;
+}
