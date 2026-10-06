@@ -37,4 +37,9 @@
 
         <button class="btn btn-primary" type="submit" id="loginbutton" name="LoginButton" value="{'Log in'|i18n( 'design/adminui/login' )}" tabindex="3" title="{'Click here to log in using the username/password combination entered in the fields above.'|i18n( 'design/adminui/login' )}">{'Log in'|i18n( 'design/adminui/login' )}</button>
     </form>
+    {* The social login buttons of sevenx_authentication_2fa, where that extension is active and enables a provider *}
+    {if ezmodule( 'user2fa/oauth' )}
+        {include uri='design:user2fa/exp_style.tpl'}
+        {include uri='design:user2fa/parts/social_buttons.tpl' context='login' redirect=$User:redirect_uri}
+    {/if}
 </div>
