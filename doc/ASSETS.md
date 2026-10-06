@@ -18,7 +18,7 @@ Not copied on purpose (they need YUI, which Exponential 6 no longer ships; the a
 - `templates/content/edit.tpl`
 - `templates/tags/dashboard.tpl`
 
-5515 files.
+5518 files.
 
 | File in design/adminui | Source | Bytes | sha256 |
 |---|---|---|---|
@@ -5299,6 +5299,8 @@ Not copied on purpose (they need YUI, which Exponential 6 no longer ships; the a
 | `javascript/ngadminui/bootstrap.js` | Bootstrap 3.3.5 | 68890 | `ef43a4d502ffb688656851d788c42869d47e8840d007b4f4b66f62530171acd4` |
 | `javascript/ngadminui/resizable.js` | bundle js (jQuery UI 1.11.4 resizable) | 31450 | `d70b80ee8c72166d96d376969fd7ddc40df1b6dfcc37811cb23a32970f824835` |
 | `javascript/node_tabs.js` | legacy design | 4394 | `3769c75d71af5d2d1f41c59cbd65dba41b55203183c61701f8328c5bcb754ad3` |
+| `javascript/plugins/inlinepopups/editor_plugin.js` | ezoe inlinepopups plugin (Exponential, GPL-2.0) | 11928 | `5d9b4bc1fde4ebf7cf5728a40b95ca1bd159288f0938098a12cc26b60029ff02` |
+| `javascript/plugins/inlinepopups/editor_plugin_src.js` | ezoe inlinepopups plugin (Exponential, GPL-2.0) | 19657 | `b4e4ffa6c357f242826110eb41a68f8dadb9ca48dd0dd8c3ea0d11a6f5d7b16c` |
 | `javascript/plugins/inlinepopups/skins/tinyngadminui/img/alert.gif` | legacy design | 810 | `3ce88ef0a4ed1bcdc0a8d99ac77e5fdf8b06ceea27b34ddbf1ccb2b90ccbb420` |
 | `javascript/plugins/inlinepopups/skins/tinyngadminui/img/button.gif` | legacy design | 272 | `a8900962172193ca52aebff7dfa3b1a6b925bcf4137a0068f6c45c53972426a3` |
 | `javascript/plugins/inlinepopups/skins/tinyngadminui/img/buttons.gif` | legacy design | 1195 | `617248ef8eb196c9e51525ed9c7bc660090b853e4acbeb1519bac5907356f97b` |
@@ -5307,6 +5309,7 @@ Not copied on purpose (they need YUI, which Exponential 6 no longer ships; the a
 | `javascript/plugins/inlinepopups/skins/tinyngadminui/img/horizontal.gif` | legacy design | 769 | `b5cb6acba7c768de3b23a594ac1c4ad328f97a5888280e259c0ba17884502b03` |
 | `javascript/plugins/inlinepopups/skins/tinyngadminui/img/vertical.gif` | legacy design | 84 | `4f289463906ae349d653a77139ca224ba9517585a5455b4bccc3c7df5e44a729` |
 | `javascript/plugins/inlinepopups/skins/tinyngadminui/window.css` | legacy design | 5319 | `d602f45892449a24b4d1cad9664d3a68cdd5aa7783b7ca4079298b0347159184` |
+| `javascript/plugins/inlinepopups/template.htm` | ezoe inlinepopups plugin (Exponential, GPL-2.0) | 12878 | `078232edb5273221a098dff4a53d2b1b42b9835f28135802d1a16e53594ad9d6` |
 | `javascript/popupmenu/ezpopupmenu.js` | legacy design | 24133 | `264961d1a4b145fbe89be9d02c2ef1d8063c3b487edf6cf44ef327f2a3d31449` |
 | `stylesheets/content.css` | legacy design | 4291 | `16820f6faacb3df7f6e13497d4661f3986f9034a142943261ae4cb6a6c0be276` |
 | `stylesheets/core.css` | legacy design | 11790 | `88a5b0bf3d962644e2e5918647b91b9f76e057fcb496fba1086c84f3d0c61200` |

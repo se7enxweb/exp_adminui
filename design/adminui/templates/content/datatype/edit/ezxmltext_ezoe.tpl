@@ -1,3 +1,5 @@
+{* Exponential Admin UI: Exponential's ezoe template (editor engine registry included) with the Netgen Admin UI
+   additions: the "tinyngadminui" skin of TinyMCE 3 dialogs, loaded from javascript/plugins/inlinepopups of this design. *}
 {default input_handler=$attribute.content.input
          attribute_base='ContentObjectAttribute'
          editorRow=10}
@@ -7,6 +9,17 @@
 {/if}
 
 {if $input_handler.is_editor_enabled}
+{* Editor engine, from the registry (ezoe.ini [EditorSettings] Engines[]): user preference ezoe_engine, then the
+   siteaccess / global EditorEngine, tinymce3 when the choice is unknown. An engine with a template renders itself;
+   the built-in TinyMCE 3 editor follows below. *}
+{def $ezoe_engine = $input_handler.engine}
+{if $ezoe_engine.template}
+    {include uri=$ezoe_engine.template
+             attribute=$attribute
+             input_handler=$input_handler
+             attribute_base=$attribute_base
+             editorRow=$editorRow}
+{else}
 <!-- Start editor -->
 
     {def $layout_settings = $input_handler.editor_layout_settings}
@@ -75,13 +88,13 @@
         skin_variant : '{$skin_variant}',
         plugins : "-{$plugin_list|implode(',-')}",
         directionality : '{$directionality}',
-        inlinepopups_skin: "tinyngadminui",
         theme_advanced_buttons2 : "",
         theme_advanced_buttons3 : "",
         theme_advanced_blockformats : "p,pre,h1,h2,h3,h4,h5,h6",// removes address tag, not suppored by ezxml
         theme_advanced_path_location : false,// ignore, use theme_advanced_statusbar_location
         theme_advanced_statusbar_location : "bottom",// correct value set by layout code bellow pr attribute
         theme_advanced_toolbar_location : "top",// correct value set by layout code bellow pr attribute
+        inlinepopups_skin: "tinyngadminui",
         theme_advanced_toolbar_align : "{$toolbar_alignment}",
         theme_advanced_toolbar_floating : true,
         theme_advanced_resize_horizontal : false,
@@ -112,10 +125,10 @@
         ez_root_url : {'/'|ezroot},
         ez_extension_url : {'/ezoe/'|ezurl},
         ez_js_url : {'/extension/ezoe/design/standard/javascript/'|ezroot},
-        ngadminui_js_url: {'/extension/ngadminui/design/ngadminui/javascript/'|ezroot},
-        ngadminui_tinymce_plugins: ['inlinepopups'],
         /* Used by language pack / plugin url fixer bellow, do not change */
         ez_tinymce_url : {'javascript/tiny_mce.js'|ezdesign},
+        adminui_js_url: {'javascript/'|ezdesign},
+        adminui_tinymce_plugins: ['inlinepopups'],
         ez_contentobject_id : {$attribute.contentobject_id},
         ez_contentobject_version : {$attribute.version},
         ez_form_token: "@$ezxFormToken@",
@@ -166,10 +179,10 @@
             {/literal}
         {rdelim},
         paste_postprocess: function(pl, o) {ldelim}
-            // removes \n after <br />, this is for paste of text
+            // removes \n after <br>, this is for paste of text
             // with soft carriage return from Word in Firefox
             // see issue http://issues.ez.no/18702
-            o.node.innerHTML = o.node.innerHTML.replace(/<br\s?.*\/?>\n/gi,'<br>');
+            o.node.innerHTML = o.node.innerHTML.replace(/<br\s?.*\/?>\n/gi,'<br>'); 
             {literal}
             if (
                 pl.editor.pasteAsPlainText
@@ -177,7 +190,7 @@
                 && o.node.firstChild.tagName
                 && o.node.firstChild.tagName.toLowerCase() === 'pre'
             ) {
-                o.node.innerHTML = o.node.firstChild.innerHTML.replace(/\n/g, "<br />");
+                o.node.innerHTML = o.node.firstChild.innerHTML.replace(/\n/g, "<br>");
             }
             {/literal}
         {rdelim}
@@ -190,16 +203,13 @@
     // and set urls for plugins so their dialogs work correctly
     (function(){
         var uri = document.location.protocol + '//' + document.location.host + eZOeGlobalSettings.ez_tinymce_url, tps = eZOeGlobalSettings.plugins.split(','), pm = tinymce.PluginManager, tp;
-        var ngadminui_uri = document.location.protocol + '//' + document.location.host + eZOeGlobalSettings.ngadminui_js_url;
         tinymce.ScriptLoader.markDone( uri.replace( 'tiny_mce', 'langs/' + eZOeGlobalSettings.language ) );
         for (var i = 0, l = tps.length; i < l; i++)
         {
             tp = tps[i].slice(1);
             pm.urls[ tp ] = uri.replace( 'tiny_mce.js', 'plugins/' + tp );
-
-            if (eZOeGlobalSettings.ngadminui_tinymce_plugins.indexOf(tp) >= 0) {
-                pm.urls[ tp ] = ngadminui_uri + 'plugins/' + tp;
-            }
+            if ( eZOeGlobalSettings.adminui_tinymce_plugins.indexOf( tp ) >= 0 )
+                pm.urls[ tp ] = eZOeGlobalSettings.adminui_js_url.replace( /\/$/, '' ) + '/plugins/' + tp;
         }
     }())
 
@@ -232,6 +242,7 @@
         {if $input_handler.can_disable}
             <input class="button{if $layout_settings['buttons']|contains('disable')} hide{/if}" type="submit" name="CustomActionButton[{$attribute.id}_disable_editor]" value="{'Disable editor'|i18n('design/standard/content/datatype')}" />
         {/if}
+        {include uri='design:content/datatype/edit/ezxmltext_ezoe_engine_switch.tpl' attribute=$attribute input_handler=$input_handler}
         <script type="text/javascript">
         eZOeAttributeSettings = eZOeGlobalSettings;
         eZOeAttributeSettings['ez_attribute_id'] = {$attribute.id};
@@ -243,12 +254,14 @@
         </script>
     </div>
 <!-- End editor -->
+{/if}
+{undef $ezoe_engine}
 {else}
     {* Require jQuery even when disabled to make sure user don't get cache issues when they enable editor *}
     {ezscript_require( 'ezjsc::jquery' )}
     {let aliased_handler=$input_handler.aliased_handler}
     {include uri=concat("design:content/datatype/edit/",$aliased_handler.edit_template_name,".tpl") input_handler=$aliased_handler}
-    <input class="button" type="submit" name="CustomActionButton[{$attribute.id}_enable_editor]" value="{'Enable editor'|i18n('design/standard/content/datatype')}" /><br />
+    <input class="button" type="submit" name="CustomActionButton[{$attribute.id}_enable_editor]" value="{'Enable editor'|i18n('design/standard/content/datatype')}" /><br>
     {/let}
 {/if}
 {/default}
