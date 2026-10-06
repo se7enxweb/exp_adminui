@@ -1,0 +1,41 @@
+Exponential Admin UI (exp_adminui)
+Copyright (C) 2026 7x <https://se7enx.com>
+Licensed under the GNU General Public License v2.0 or (at your option) any later version. See LICENSE.
+
+This extension is a port of Netgen Admin UI to Exponential 6 template code. It contains files copied unchanged
+from Netgen Admin UI and the libraries it ships, as installed from the Composer package se7enxweb/admin-ui-bundle
+2.9.15 (a fork of netgen/admin-ui-bundle, https://github.com/netgen/NetgenAdminUIBundle). doc/ASSETS.md lists
+every copied file with its source path and sha256.
+
+Netgen Admin UI
+  Copyright (C) Netgen <https://netgen.io> and contributors
+  License: GPL-2.0-or-later
+  Used: bundle/Resources/public/css (style.css, icomoon.css), fonts, images, js (app.js);
+        bundle/ezpublish_legacy/ngadminui/design/ngadminui (legacy design templates, stylesheets, scripts,
+        images and the kp icon set); the Twig layout templates were ported to design/adminui/templates.
+  The legacy design templates are themselves derived from the eZ Publish Legacy administration design,
+  Copyright (C) eZ Systems AS, GPL-2.0.
+
+Font Awesome 4.4.0 (stylesheets/font-awesome.css, fonts/fontawesome-webfont.*, fonts/FontAwesome.otf)
+  Copyright Dave Gandy. Font: SIL OFL 1.1; CSS: MIT License.
+
+Bootstrap 3.3.5 (javascript/ngadminui/bootstrap.js, fonts/bootstrap/glyphicons-halflings-regular.*)
+  Copyright 2011-2015 Twitter, Inc. MIT License.
+
+jQuery UI 1.11.4, core, widget, mouse and resizable (javascript/ngadminui/resizable.js)
+  Copyright jQuery Foundation and other contributors. MIT License.
+
+Ace editor (javascript/ngadminui/ace/)
+  Copyright (c) 2010, Ajax.org B.V. BSD 3-Clause License.
+
+Roboto (fonts/Roboto/) and Material Icons (fonts/MaterialIcons/)
+  Copyright Google. Apache License 2.0.
+
+IcoMoon icon font (fonts/icomoon.*, fonts/IcoMoon.*), as shipped in Netgen Admin UI; GPL-2.0-or-later with it.
+
+Side bar icons (images/menu/):
+  layouts-logo.svg       Netgen Layouts (netgen/layouts-core), Copyright Netgen, MIT License
+  tags-logo.svg          Netgen Tags (se7enxweb/tagsbundle), Copyright Netgen, GPL-2.0-or-later
+  ic-logo-silhouette.svg Netgen Information Collection (netgen/information-collection-bundle),
+                         Copyright Netgen, GPL-2.0-only (so a distribution of this extension as a whole is
+                         under GPL-2.0)
