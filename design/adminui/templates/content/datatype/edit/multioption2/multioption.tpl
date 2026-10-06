@@ -2,11 +2,11 @@
     <table class="multioption" >
     {section var=MultiOptionList loop=$group.multioption_list}
         <tr>
-            <th class="tight"><input type="checkbox" name="{$attribute_base}_data_multioption_remove_{$attribute.id}_{$group.group_id}[]" value="{$MultiOptionList.id}" title="{'Select multioption for removal.'|i18n( 'design/standard/content/datatype' )}" /></th>
+            <th class="tight"><input type="checkbox" name="{$attribute_base}_data_multioption_remove_{$attribute.id}_{$group.group_id|wash}[]" value="{$MultiOptionList.id|wash}" title="{'Select multioption for removal.'|i18n( 'design/standard/content/datatype' )}" /></th>
             <td>
             <label for="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}">{'Multioption:'|i18n( 'design/standard/content/datatype' )}</label>
-            <input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="form-control input-sm ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="text" name = "{$attribute_base}_data_multioption_name_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}" value="{$MultiOptionList.item.name|wash}" />
-            <input type="hidden" name="{$attribute_base}_data_multioption_id_{$attribute.id}_{$group.group_id}[]" value="{$MultiOptionList.multioption_id}" />
+            <input id="ezcoa-{if ne( $attribute_base, 'ContentObjectAttribute' )}{$attribute_base}-{/if}{$attribute.contentclassattribute_id}_{$attribute.contentclass_attribute_identifier}" class="form-control input-sm ezcc-{$attribute.object.content_class.identifier} ezcca-{$attribute.object.content_class.identifier}_{$attribute.contentclass_attribute_identifier}" type="text" name = "{$attribute_base}_data_multioption_name_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}" value="{$MultiOptionList.item.name|wash}" />
+            <input type="hidden" name="{$attribute_base}_data_multioption_id_{$attribute.id}_{$group.group_id|wash}[]" value="{$MultiOptionList.multioption_id|wash}" />
 
             {section show=$MultiOptionList.item.optionlist}
 
@@ -24,36 +24,36 @@
                 {section var=OptionList loop=$MultiOptionList.item.optionlist}
                     <tr>
                         {* Remove. *}
-                        <td><input type="checkbox" name="{$attribute_base}_data_option_remove_{$attribute.id}_{$group.group_id}_{$MultiOptionList.id}[]" value="{$OptionList.id}" title="{'Select option for removal.'|i18n('design/standard/content/datatype')}" /></td>
+                        <td><input type="checkbox" name="{$attribute_base}_data_option_remove_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.id|wash}[]" value="{$OptionList.id|wash}" title="{'Select option for removal.'|i18n('design/standard/content/datatype')}" /></td>
                         {* Option. *}
-                        <td><input class="form-control input-sm" type="text" name="{$attribute_base}_data_option_value_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}[]" value="{$OptionList.value|wash}" /></td>
+                        <td><input class="form-control input-sm" type="text" name="{$attribute_base}_data_option_value_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}[]" value="{$OptionList.value|wash}" /></td>
                         {* Value. *}
-                        <td><input class="form-control input-sm" type="text" name="{$attribute_base}_data_option_additional_price_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}[]" value="{$OptionList.additional_price|wash}" /></td>
+                        <td><input class="form-control input-sm" type="text" name="{$attribute_base}_data_option_additional_price_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}[]" value="{$OptionList.additional_price|wash}" /></td>
                         <td>
                         {if is_set($OptionList.item.object)}
                             {let imgobj=fetch('content','object',hash(object_id,$OptionList.item.object))}
-                            <input type="hidden" name="{$attribute_base}_data_option_object_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}_{$OptionList.option_id}" value="{$OptionList.item.object}" />
+                            <input type="hidden" name="{$attribute_base}_data_option_object_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}_{$OptionList.option_id|wash}" value="{$OptionList.item.object|wash}" />
                             {content_view_gui content_object=$imgobj view='tiny' object_parameters=hash(size,"tiny") link_parameters=hash("href",$imgobj.main_node.url_alias, 'target', "_blank")}
                             {/let}
-                            <button name="CustomActionButton[{$attribute.id}_remove-object_{$group.group_id}_{$MultiOptionList.multioption_id}_{$OptionList.index}]"><i class="fa fa-remove"></i></button>
+                            <button name="CustomActionButton[{$attribute.id}_remove-object_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}_{$OptionList.index}]"><i class="fa fa-remove"></i></button>
                             {else}
-                            <button name="CustomActionButton[{$attribute.id}_browse-object_{$group.group_id}_{$MultiOptionList.multioption_id}_{$OptionList.index}]"><i class="fa fa-plus-square"></i></button>
+                            <button name="CustomActionButton[{$attribute.id}_browse-object_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}_{$OptionList.index}]"><i class="fa fa-plus-square"></i></button>
                         {/if}
                         </td>
                         {* Default. *}
                         <td>
                         {if eq( sum( $OptionList.index, 1 ), $MultiOptionList.default_option_id )}
-                            <input type="radio" name="{$attribute_base}_data_default_option_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}"  value="{$OptionList.id}" title="{'Use the radio buttons to set the default option.'|i18n( 'design/standard/content/datatype' )}" checked="checked" />
+                            <input type="radio" name="{$attribute_base}_data_default_option_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}"  value="{$OptionList.id|wash}" title="{'Use the radio buttons to set the default option.'|i18n( 'design/standard/content/datatype' )}" checked="checked" />
                             {else}
-                            <input type="radio" name="{$attribute_base}_data_default_option_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}"  value="{$OptionList.id}" title="{'Use the radio buttons to set the default option.'|i18n( 'design/standard/content/datatype' )}" />
+                            <input type="radio" name="{$attribute_base}_data_default_option_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}"  value="{$OptionList.id|wash}" title="{'Use the radio buttons to set the default option.'|i18n( 'design/standard/content/datatype' )}" />
                         {/if}
-                        <input type="hidden" name="{$attribute_base}_data_option_id_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}[]" value="{$OptionList.id}" />
-                        <input type="hidden" name="{$attribute_base}_data_option_option_id_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}[]" value="{$OptionList.option_id}" />
+                        <input type="hidden" name="{$attribute_base}_data_option_id_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}[]" value="{$OptionList.id|wash}" />
+                        <input type="hidden" name="{$attribute_base}_data_option_option_id_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}[]" value="{$OptionList.option_id|wash}" />
                         </td>
                         {*Not selectable*}
                         <td><input type="checkbox"
-                             name="{$attribute_base}_data_option_is_selectable_{$attribute.id}_{$group.group_id}_{$MultiOptionList.multioption_id}_{$OptionList.option_id}"
-                             value="{$OptionList.option_id}" title="{'Select if you want to disallow this option choice'|i18n('design/standard/content/datatype')}"
+                             name="{$attribute_base}_data_option_is_selectable_{$attribute.id}_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}_{$OptionList.option_id|wash}"
+                             value="{$OptionList.option_id|wash}" title="{'Select if you want to disallow this option choice'|i18n('design/standard/content/datatype')}"
                              {cond( $OptionList.is_selectable|not(), 'checked="checked"', true(),'' )} /></td>
                     </tr>
                 {/section}
@@ -63,14 +63,14 @@
             {/section}
             <div class="toolbar">
                 {if $MultiOptionList.item.optionlist}
-                    <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_remove-selected-option_{$group.group_id}_{$MultiOptionList.id}]" value="{'Remove selected'|i18n('design/standard/content/datatype')}" title="{'Remove selected options.'|i18n( 'design/standard/content/datatype' )}" />
+                    <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_remove-selected-option_{$group.group_id|wash}_{$MultiOptionList.id|wash}]" value="{'Remove selected'|i18n('design/standard/content/datatype')}" title="{'Remove selected options.'|i18n( 'design/standard/content/datatype' )}" />
                 {/if}
-                <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_new-option_{$group.group_id}_{$MultiOptionList.multioption_id}]" value="{'Add option'|i18n('design/standard/content/datatype')}" title="{'Add a new option.'|i18n( 'design/standard/content/datatype' )}" />
+                <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_new-option_{$group.group_id|wash}_{$MultiOptionList.multioption_id|wash}]" value="{'Add option'|i18n('design/standard/content/datatype')}" title="{'Add a new option.'|i18n( 'design/standard/content/datatype' )}" />
             </div>
 
             {if not(is_set($MultiOptionList.item.child_group))}
                 <div class="toolbar">
-                    <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_new-sublevel_{$group.group_id}_{$MultiOptionList.id}]" value="{'Add multioption sub level'|i18n('design/standard/content/datatype')}" title="{'Add a new multioption sub level.'|i18n( 'design/standard/content/datatype' )}" />
+                    <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_new-sublevel_{$group.group_id|wash}_{$MultiOptionList.id|wash}]" value="{'Add multioption sub level'|i18n('design/standard/content/datatype')}" title="{'Add a new multioption sub level.'|i18n( 'design/standard/content/datatype' )}" />
                 </div>
                 {else}
                 {include uri='design:content/datatype/edit/multioption2/multioption2.tpl' name=ChildGroup attribute=$attribute group=$MultiOptionList.item.child_group parent_group_id=$group.group_id parent_multioption_id=$MultiOptionList.item.id depth=sum($depth,1)}
@@ -87,8 +87,8 @@
 
      <div class="toolbar">
          {if $group.multioption_list}
-             <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_remove-selected-multioption_{$group.group_id}]" value="{'Remove multioption'|i18n('design/standard/content/datatype')}" title="{'Remove selected multioptions.'|i18n( 'design/standard/content/datatype' )}" />
+             <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_remove-selected-multioption_{$group.group_id|wash}]" value="{'Remove multioption'|i18n('design/standard/content/datatype')}" title="{'Remove selected multioptions.'|i18n( 'design/standard/content/datatype' )}" />
          {/if}
  
-         <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_new-multioption_{$group.group_id}]" value="{'Add multioption'|i18n('design/standard/content/datatype')}" title="{'Add a new multioption.'|i18n('design/standard/content/datatype')}" />
+         <input class="btn btn-default btn-sm" type="submit" name="CustomActionButton[{$attribute.id}_new-multioption_{$group.group_id|wash}]" value="{'Add multioption'|i18n('design/standard/content/datatype')}" title="{'Add a new multioption.'|i18n('design/standard/content/datatype')}" />
      </div>
