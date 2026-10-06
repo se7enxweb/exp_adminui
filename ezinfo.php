@@ -10,7 +10,7 @@ class exp_adminuiInfo
     {
         return array(
             'Name'      => '<a href="https://github.com/se7enxweb/exp_adminui">Exponential Admin UI : the Netgen Admin UI look for the Exponential administration</a>',
-            'Version'   => '1.0.0.0',
+            'Version'   => '1.0.0.1',
             'Author'    => '7x',
             'Copyright' => 'Copyright &copy; 2026 - ' . date( 'Y' ) . ' <a href="https://se7enx.com" target="blank">7x</a>; design ported from Netgen Admin UI, Copyright &copy; Netgen',
             'License'   => "GNU General Public License v2.0 (or any later version)",
