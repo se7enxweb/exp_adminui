@@ -29,7 +29,17 @@ Status: in development (1.0.0.0-dev). See [doc/PROGRESS.md](doc/PROGRESS.md) for
    git clone https://github.com/se7enxweb/exp_adminui.git extension/exp_adminui
    ```
 
-   There is no Composer package yet. Once one is published, `composer require` will be the other way in.
+   or, once the package is on Packagist, with Composer. The legacy extension installer
+   (`se7enxweb/ezpublish-legacy-installer`) puts it in `extension/exp_adminui`:
+
+   ```bash
+   composer require se7enxweb/exp_adminui
+   ```
+
+   Activation is per siteaccess (steps 2 and 3). Do not add the extension to `ActiveExtensions[]`: as an access
+   extension it only acts where a siteaccess names it in `ActiveAccessExtensions[]`, so the other siteaccesses keep
+   their own design. Then regenerate the extension autoloads if your installation keeps them
+   (`php bin/php/ezpgenerateautoloads.php -e`; the extension has no classes, so this only refreshes the list).
 2. Create the siteaccess `settings/siteaccess/adminui/`. Copy the admin siteaccess's settings as a base, then set
    the design chain and switch the extension on for this siteaccess only:
 
