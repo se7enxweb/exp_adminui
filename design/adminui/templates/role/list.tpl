@@ -38,6 +38,7 @@
                        heading is the one the rss list and the locations tab use. *}
                     {include uri='design:parts/sortheader.tpl' key='id'   label='ID'|i18n( 'design/admin/role/list' )   sort=$role_sort page_uri='/role/list' cell_class='tight'}
                     {include uri='design:parts/sortheader.tpl' key='name' label='Name'|i18n( 'design/admin/role/list' ) sort=$role_sort page_uri='/role/list'}
+                    <th class="tight" title="{'How many users and user groups the role is assigned to'|i18n( 'design/admin/role/list' )}">{'Assigned'|i18n( 'design/admin/role/list' )}</th>
                     <th class="tight">&nbsp;</th>
                     <th class="tight">&nbsp;</th>
                     <th class="tight">&nbsp;</th>
@@ -49,6 +50,7 @@
                     <td class="tight"><input type="checkbox" name="DeleteIDArray[]" value="{$Roles.item.id}" title="{'Select role for removal.'|i18n( 'design/admin/role/list' )}" /></td>
                     <td class="role-id">{$Roles.item.id}</td>
                     <td>{'role'|icon( 'small', 'Role'|i18n( 'design/admin/role/list' ) )}&nbsp;<a href={concat( '/role/view/', $Roles.item.id)|ezurl}>{$role_name|wash}</a></td>
+                    <td class="number role-assignment-count" align="right"><a href={concat( '/role/view/', $Roles.item.id )|ezurl} title="{'Show the users and user groups of the <%role_name> role.'|i18n( 'design/admin/role/list',, hash( '%role_name', $role_name ) )|wash}">{first_set( $assignment_counts[$Roles.item.id], 0 )}</a></td>
                     <td><a href={concat( '/role/assign/', $Roles.item.id)|ezurl}><i class="fa fa-plus-square-o" title="{'Assign the <%role_name> role to a user or a user group.'|i18n( 'design/admin/role/list',, hash( '%role_name', $role_name ) )|wash}"></i></a></td>
                     <td><a href={concat( '/role/copy/', $Roles.item.id)|ezurl}><i class="fa fa-clone" title="{'Copy the <%role_name> role.'|i18n( 'design/admin/role/list',, hash( '%role_name', $role_name ) )|wash}"></i></a></td>
                     <td><a href={concat( '/role/edit/', $Roles.item.id)|ezurl}><i class="fa fa-pencil-square-o" title="{'Edit the <%role_name> role.'|i18n( 'design/admin/role/list',, hash( '%role_name', $role_name ) )|wash}"></i></a></td>
