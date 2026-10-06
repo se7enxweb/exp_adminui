@@ -5,8 +5,8 @@ the place of (the first one the chain admin4l, admin4, admin3, admin2, admin has
 only adminui has it). Generated from the files; see merging.md for how "merged" templates were made.
 
 - **new**: written for Exponential Admin UI (14)
-- **copy**: the Netgen Admin UI template, unchanged (112)
-- **merged**: the Netgen Admin UI template with Exponential's later changes merged in, or ported by hand (106)
+- **copy**: the Netgen Admin UI template, unchanged (111)
+- **merged**: the Netgen Admin UI template with Exponential's later changes merged in, or ported by hand (107)
 
 | Template | Origin | Overrides |
 |---|---|---|
@@ -46,7 +46,7 @@ only adminui has it). Generated from the files; see merging.md for how "merged" 
 | `class/datatype/edit/ezxmltext.tpl` | copy |  |
 | `class/datatypes.tpl` | copy |  |
 | `class/edit.tpl` | merged | `design/admin4` |
-| `class/groupedit.tpl` | copy | `design/admin4` |
+| `class/groupedit.tpl` | merged | `design/admin4` |
 | `class/grouplist.tpl` | merged | `design/admin4` |
 | `class/groups.tpl` | copy | `design/admin4` |
 | `class/removegroup.tpl` | copy | `design/admin4` |

@@ -23,7 +23,7 @@ scale 2, light and dark, Apache and Velocity), **gap** (see gaps.md).
 
 | View | Path | Status | Notes |
 |---|---|---|---|
-| Dashboard | /content/dashboard | live | the reference's block grid; admin4's redesigned dashboard not ported (decision pending) |
+| Dashboard | /content/dashboard | live, checked | admin4's dashboard (welcome, key figures, 14-day chart, system, security, blocks) in the Admin UI look |
 | Node view, tabs, sub-items | /content/view/full/2 | live, merged | sub-items: expui table in the reference look (adminui.css) |
 | Media library, User accounts | /content/view/full/43, /5 | live, merged | |
 | Content edit | /content/edit/<id> | live, merged | no YUI; editor keeps Exponential's TinyMCE 8/3 choice |
@@ -74,4 +74,35 @@ layouts-final-8080/ and layouts-final-443/ on alpha; before: layouts-sweep1/).
 
 ## Other module pages
 
-See the module sweep below (filled in as each page is checked).
+
+Final readability sweep, 2026-10-06: 36 pages (the Layouts pages, the dashboard, newsletter, tags, audit, cronjobs,
+maintenance, sections, states, languages, workflow processes, oAuth, e-mail preferences, notification status,
+sessions, preload, RAD, DSE, git manager, update, export, CIE, syndication, shop dashboard, collaboration,
+notification settings, package view, system information, extensions, bookmarks, trash, template editor) at 1440
+and 960 at scale 2, light and dark: **144 of 144 page views pass on Apache and 144 of 144 on Velocity** (no text
+under 4.5:1 apart from the reference's own colour pairs, nothing past the window, no overlapping text, no JS errors,
+no failed requests). The accent is the Admin UI blue throughout.
+
+## Pixel comparison with the reference
+
+Each view shot on the reference (`/ngadminui`) and the port (`/adminui`), debug output hidden, compared pixel by pixel
+(tolerance 16 per channel). "frame" hides the data areas (page content, left column entries, side bar entries, path
+items, avatar), so it measures the frame: header, side bar, columns, path bar, footer. "full" compares the whole
+window with its data; the two sites hold different content, so those numbers measure content, not the port.
+
+| View | 1440 full | 1440 frame | 960@2 full | 960@2 frame |
+|---|---|---|---|---|
+| Node view /content/view/full/2 | 3.8 | 0.3 | 8.7 | 0.4 |
+| Media, Users | 5.0 to 5.2 | 0.2 | 9.0 | 0.1 to 0.3 |
+| Dashboard | 8.3 | 0.2 | 10.3 | 0.1 |
+| Classes, roles, sections, states, workflows, triggers, packages, RSS, links, settings, setup pages | 2.7 to 16.9 | 0.1 to 0.3 | 3.8 to 15.4 | 0.1 to 0.3 |
+| Drafts, bookmarks, pending, trash, languages, URL translator, wildcards | 2.0 to 10.4 | 0.2 | 2.8 to 11.7 | 0.3 |
+| Change password, notification settings, collaboration, unactivated users, webshop | 1.8 to 10.8 | 0.1 to 0.2 | 2.5 to 10.9 | 0.1 to 0.3 |
+| Tags (reference: Symfony tags admin) | 22.7 | 0.9 | 23.0 | 1.3 |
+| Layouts (reference: Symfony layouts admin) | 8.1 | 3.5 | 9.5 | 3.9 |
+| Search, history | 15.6 to 24.6 | 14.6 to 15.6 | 22.5 to 30.6 | 21.8 to 23.3 |
+| Information collection (Symfony page on the reference) | 21.0 | 17.6 | 27.2 | 23.2 |
+
+The frame of the Admin UI's own views is within 0.1 to 0.4% of the reference (the logo is the difference). Search
+and history differ on purpose (see gaps.md); information collection and the Layouts and Tags admins are Symfony pages
+on the reference. At 390@2 both sites show the "window too small" notice.

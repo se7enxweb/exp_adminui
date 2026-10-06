@@ -43,3 +43,5 @@
 - **Contrast**: a few of Exponential's greys and tints that are just under 4.5:1 are darkened within their hue in
   adminui (`adminui-modules.css`). The Admin UI's own colours (left menu links on grey, the path label, white table
   heads on grey, grey node tabs) are kept as the reference has them, although some are under 4.5:1 too.
+- **Search and history pages**: the reference routes `/content/search` through a Symfony controller, which draws
+  those pages without the left column and without the header search box. adminui keeps both, as on every other page.
