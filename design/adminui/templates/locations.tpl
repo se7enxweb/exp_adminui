@@ -1,7 +1,33 @@
 <div class="panel">
-    {* Locations window. *}
-    {let assigned_nodes=$node.object.assigned_nodes
-         assignment_count=$assigned_nodes|count
+    {* Locations window.
+
+       Paged. An object can be placed in any number of locations, and drawing all
+       of them meant fetching all of them, plus a path fetch for every row - on an
+       object with thousands of locations the page did not render at all.
+
+       The offset comes off the url as (location_offset), so the tab keeps its
+       place through the ordinary node view, and the limit is
+       content.ini [LocationsSettings] LocationsPerPage. *}
+    {let locations_limit=ezini( 'LocationsSettings', 'LocationsPerPage', 'content.ini' )|int()
+         locations_offset=cond( and( is_set( $view_parameters.location_offset ),
+                                     $view_parameters.location_offset|int()|ge( 0 ) ),
+                                $view_parameters.location_offset|int(), 0 )
+         locations_sort=cond( is_set( $view_parameters.location_sort ),
+                              $view_parameters.location_sort, '' )
+         locations_sort_order=cond( eq( $view_parameters.location_sort_order, 'desc' ), 'desc', 'asc' )
+         locations_sort_uri=concat( '/content/view/full/', $node.node_id )
+         locations_sort_state=hash( 'field', $locations_sort,
+                                    'direction', $locations_sort_order,
+                                    'opposite', cond( eq( $locations_sort_order, 'asc' ), 'desc', 'asc' ) )
+         locations_carried_parameters=''
+         assignment_count=fetch( 'content', 'assigned_node_count',
+                                 hash( 'object_id', $node.object.id ) )
+         assigned_nodes=fetch( 'content', 'assigned_nodes',
+                               hash( 'object_id', $node.object.id,
+                                     'offset', $locations_offset,
+                                     'limit', $locations_limit,
+                                     'sort_field', $locations_sort,
+                                     'sort_order', $locations_sort_order ) )
          has_manage_locations=fetch( 'user', 'current_user' ).has_manage_locations
          can_edit_node=$node.can_edit
          can_remove_location=false()
@@ -12,6 +38,22 @@
                             hash( 'access', 'create',
                             'contentobject', $node)))}
 
+    {* Everything else on the address is kept when a column heading is followed -
+       (tab)/locations above all, or the heading would leave this tab. The three
+       the sorting owns are left out: the two are being rewritten, and the offset
+       goes back to the first page, since page eleven of the old order means
+       nothing in the new one. *}
+    {foreach $view_parameters as $parameter_name => $parameter_value}
+        {if and( ne( $parameter_name, 'location_sort' ),
+                 ne( $parameter_name, 'location_sort_order' ),
+                 ne( $parameter_name, 'location_offset' ),
+                 ne( $parameter_name, '_custom' ),
+                 ne( $parameter_value, '' ) )}
+            {set locations_carried_parameters=concat( $locations_carried_parameters,
+                                                      '/(', $parameter_name, ')/', $parameter_value )}
+        {/if}
+    {/foreach}
+
     <form name="locationsform" method="post" action={'content/action'|ezurl}>
     <input type="hidden" name="ContentNodeID" value="{$node.node_id}" />
     <input type="hidden" name="ContentObjectID" value="{$node.object.id}" />
@@ -21,11 +63,12 @@
     <table id="tab-locations-list" class="list" cellspacing="0" summary="{'Locations (aka Nodes) for current object.'|i18n( 'design/admin/node/view/full' )}">
     <tr>
         <th class="tight"><i class="fa fa-check-square-o" title="{'Invert selection.'|i18n( 'design/admin/node/view/full' )}" onclick="ezjs_toggleCheckboxes( document.locationsform, 'LocationIDSelection[]' ); return false;"></i></th>
-        <th class="wide">{'Location'|i18n( 'design/admin/node/view/full' )}</th>
-        <th class="tight">{'Sub items'|i18n( 'design/admin/node/view/full' )}</th>
-    {*   <th class="tight">{'Sorting'|i18n( 'design/admin/node/view/full' )}</th> *}
-        <th class="tight">{'Visibility'|i18n( 'design/admin/node/view/full' )}</th>
-        <th class="tight">{'Main'|i18n( 'design/admin/node/view/full' )}</th>
+        {* The headings sort the whole list, not the page on screen: the column
+           travels on the address and the database does it. *}
+        {include uri='design:parts/sortheader.tpl' key='path'       label='Location'|i18n( 'design/admin/node/view/full' )   sort=$locations_sort_state page_uri=$locations_sort_uri sort_name='location_sort' dir_name='location_sort_order' suffix=$locations_carried_parameters cell_class='wide'}
+        {include uri='design:parts/sortheader.tpl' key='children'   label='Sub items'|i18n( 'design/admin/node/view/full' )  sort=$locations_sort_state page_uri=$locations_sort_uri sort_name='location_sort' dir_name='location_sort_order' suffix=$locations_carried_parameters cell_class='tight'}
+        {include uri='design:parts/sortheader.tpl' key='visibility' label='Visibility'|i18n( 'design/admin/node/view/full' ) sort=$locations_sort_state page_uri=$locations_sort_uri sort_name='location_sort' dir_name='location_sort_order' suffix=$locations_carried_parameters cell_class='tight'}
+        {include uri='design:parts/sortheader.tpl' key='main'       label='Main'|i18n( 'design/admin/node/view/full' )       sort=$locations_sort_state page_uri=$locations_sort_uri sort_name='location_sort' dir_name='location_sort_order' suffix=$locations_carried_parameters cell_class='tight'}
     </tr>
     {foreach $assigned_nodes as $assignment_node
              sequence array( bglight, bgdark ) as $sequence}
@@ -44,7 +87,7 @@
         </td>
 
         {* Location.  *}
-        {section show=and( eq( $assignment_node.path_string, $node.path_string ), $assigned_nodes|count|gt(1))}
+        {section show=and( eq( $assignment_node.path_string, $node.path_string ), $assignment_count|gt(1))}
         <td><b>{section var=node_path loop=$assignment_path} <a href={$node_path.url|ezurl}>{$node_path.name|wash}</a>{delimiter} / {/delimiter}{/section}</b></td>
         {section-else}
         <td>{section var=node_path loop=$assignment_path} <a href={$node_path.url|ezurl}>{$node_path.name|wash}</a>{delimiter} / {/delimiter}{/section}</td>
@@ -97,6 +140,20 @@
        unchecked radio buttons will not be sent by browser. *}
     <input type="hidden" name="HasMainAssignment" value="1" />
 
+    {* The standard admin pager, told to use its own offset parameter so that
+       paging locations does not also page the sub items list on the same page.
+       No page_uri_suffix: view_parameters already carries (tab)/locations. *}
+    {if $assignment_count|gt( $locations_limit )}
+    <div class="context-toolbar">
+    {include name=LocationNavigator
+             uri='design:navigator/google.tpl'
+             offset_name='location_offset'
+             page_uri=concat( '/content/view/full/', $node.node_id )
+             item_count=$assignment_count
+             view_parameters=$view_parameters
+             item_limit=$locations_limit}
+    </div>
+    {/if}
 
     <div class="block">
     <div class="button-left">
@@ -129,7 +186,7 @@
         {literal}
         (function( $ )
         {
-            $('#tab-locations-list input.main-locations-radio').change(function()
+            $('#tab-locations-list input.main-locations-radio').on('change', function()
             {
                 if ( this.className === 'main-locations-radio' )
                     $('#tab-locations-list-set-main').removeClass('btn-default').addClass('btn-primary');

@@ -15,14 +15,28 @@
      $additional_tabs_count = 0
      $valid_tabs = array( $default_tab, 'details', 'translations', 'locations', 'relations', 'states' )
      $navigation_part_name = fetch( 'section', 'object', hash( 'section_id', $node.object.section_id ) ).navigation_part_identifier
+     $assigned_node_count = fetch( 'content', 'assigned_node_count', hash( 'object_id', $node.object.id ) )
 }
 
+{* The counts on the tab labels are counted, not measured by fetching the
+   thing and calling count() on it. fetch( user, user_role ) built the user's
+   entire access array in php - every policy of every role they hold, merged -
+   and it was wanted only for the number on the Policies tab. *}
 {if eq( $navigation_part_name, 'ezusernavigationpart' )}
-{def $assigned_policies   = fetch( 'user', 'user_role', hash( 'user_id', $node.contentobject_id ) )
-     $assigned_roles      = fetch( 'user', 'member_of', hash( 'id', $node.contentobject_id ) )}
+{def $assigned_roles      = fetch( 'user', 'member_of', hash( 'id', $node.contentobject_id ) )
+     $assigned_policy_count = 0}
+{foreach $assigned_roles as $wc_role}
+    {set $assigned_policy_count = sum( $assigned_policy_count,
+                                       fetch( 'role', 'policy_count', hash( 'role_id', $wc_role.id ) ) )}
+{/foreach}
 {/if}
 
-{foreach ezini( 'WindowControlsSettings', 'AdditionalTabs', 'admininterface.ini' ) as $tab}
+{* Each tab once (extensions append to AdditionalTabs[] after a siteaccess's settings are
+   read), and none of HiddenTabs[]: a siteaccess cannot take an extension's tab out of the list. *}
+{def $hidden_tabs = cond( ezini_hasvariable( 'WindowControlsSettings', 'HiddenTabs', 'admininterface.ini' ),
+                          ezini( 'WindowControlsSettings', 'HiddenTabs', 'admininterface.ini' ), array() )}
+{foreach ezini( 'WindowControlsSettings', 'AdditionalTabs', 'admininterface.ini' )|unique as $tab}
+    {if $hidden_tabs|contains( $tab )}{continue}{/if}
     {def $tab_navigation_parts = ezini( concat( 'AdditionalTab_', $tab ), 'NavigationPartName', 'admininterface.ini' )|explode( ';' )}
     {if $tab_navigation_parts|contains( $navigation_part_name )}
         {set $additional_tabs = $additional_tabs|append( $tab )}
@@ -62,7 +76,7 @@
 
         {* Locations *}
         <li id="node-tab-locations" class="middle{if $node_tab_index|eq('locations')} selected{/if}">
-            <a href={concat( $node_url_alias, '/(tab)/locations' )|ezurl} title="{'Show location overview.'|i18n( 'design/admin/node/view/full' )}">{'Locations'|i18n( 'design/admin/node/view/full',, hash( '%count', $node.object.assigned_nodes|count ) )} {if $node.object.assigned_nodes|count|gt(0)}<span class="badge">{$node.object.assigned_nodes|count}</span>{/if}</a>
+            <a href={concat( $node_url_alias, '/(tab)/locations' )|ezurl} title="{'Show location overview.'|i18n( 'design/admin/node/view/full' )}">{'Locations'|i18n( 'design/admin/node/view/full',, hash( '%count', $assigned_node_count ) )} {if $assigned_node_count|gt(0)}<span class="badge">{$assigned_node_count}</span>{/if}</a>
         </li>
 
         {* Relations *}

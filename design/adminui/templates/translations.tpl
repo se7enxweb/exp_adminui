@@ -94,7 +94,7 @@
             {literal}
             (function( $ )
             {
-                $('#tab-translations-list input.main-translation-radio').change(function()
+                $('#tab-translations-list input.main-translation-radio').on('change', function()
                 {
                     if ( this.className === 'main-translation-radio' )
                         $('#tab-translations-list-set-main').removeClass('btn-default').addClass('btn-primary');
@@ -129,7 +129,7 @@
         {literal}
         (function( $ )
         {
-            $('#tab-translations-alwaysavailable-checkbox').change(function()
+            $('#tab-translations-alwaysavailable-checkbox').on('change', function()
             {
                 $('#tab-translations-alwaysavailable-btn').toggleClass('btn-default btn-primary');
             });

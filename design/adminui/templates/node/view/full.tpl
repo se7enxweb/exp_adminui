@@ -1,3 +1,7 @@
+{* The top node (node 1) has no content object: it gets a view of its own, see node/top_node_full.tpl. *}
+{if eq( $node.contentobject_id, 0 )}
+{include uri='design:node/top_node_full.tpl'}
+{else}
 {set-block variable=$top_menu}
     <div class="node-top-switch">
         <ul class="node-view-switch">
@@ -44,7 +48,7 @@
                             </ul>
                         {/if}
 
-                        {undef $can_create_languages}
+                        {undef $can_create_languages $languages}
                     </form>
                 {/if}
             </li>
@@ -74,10 +78,18 @@
         <div class="title-wrapper clearfix">
             {include uri='design:window_preview_toolbar.tpl'}
 
-            {def $js_class_languages = condi( is_set( $node.object.content_class.prioritized_languages_js_array ), $node.object.content_class.prioritized_languages_js_array|explode( '"' )|implode( "'" ), false() )
+            {def $js_class_languages = '[]'
                  $disable_another_language = cond( eq( 0, count( $node.object.content_class.can_create_languages ) ),"'edit-class-another-language'", '-1' )
                  $disabled_sub_menu = "['class-createnodefeed', 'class-removenodefeed']"
                  $hide_status = ''}
+            {if is_set( $node.object.content_class.prioritized_languages_js_array )}
+                {set $js_class_languages = $node.object.content_class.prioritized_languages_js_array}
+                {if is_array( $js_class_languages )}
+                    {set $js_class_languages = $js_class_languages|implode( ',' )}
+                {/if}
+                {* the menu call sits in a double-quoted onclick attribute *}
+                {set $js_class_languages = $js_class_languages|explode( '"' )|implode( "'" )}
+            {/if}
 
             {if $node.is_invisible}
                 {set $hide_status = concat( '(', $node.hidden_status_string, ')' )}
@@ -112,3 +124,4 @@
 
     </div>
 </div>
+{/if}
