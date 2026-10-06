@@ -22,7 +22,14 @@ Status: in development (1.0.0.0-dev). See [doc/PROGRESS.md](doc/PROGRESS.md) for
 
 ## Install
 
-1. Put the extension in `extension/exp_adminui`.
+1. Put the extension in `extension/exp_adminui`, from its repository
+   [github.com/se7enxweb/exp_adminui](https://github.com/se7enxweb/exp_adminui):
+
+   ```bash
+   git clone https://github.com/se7enxweb/exp_adminui.git extension/exp_adminui
+   ```
+
+   There is no Composer package yet. Once one is published, `composer require` will be the other way in.
 2. Create the siteaccess `settings/siteaccess/adminui/`. Copy the admin siteaccess's settings as a base, then set
    the design chain and switch the extension on for this siteaccess only:
 
