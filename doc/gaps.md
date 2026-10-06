@@ -34,3 +34,12 @@
   but not switched on (`admininterface.ini` has no `AdditionalTabs[]=nglayouts`).
 - The YUI stand-ins of the reference's `page_head_script.html.twig` (`YUILoader`, `ContentStructureMenu`,
   `treeMenu` stubs). Nothing here uses YUI.
+
+## Differences from Exponential's own admin (admin4)
+
+- **Accent colour**: Exponential's pages use the Admin UI blue in adminui (owner decision); admin4 keeps its orange.
+- **Root font size**: the Admin UI stylesheet is Bootstrap 3 (10px root). adminui sets the root back to 16px for
+  Exponential's rem-sized page styles and repeats the Admin UI's own rem rules in px (`adminui-rem.css`).
+- **Contrast**: a few of Exponential's greys and tints that are just under 4.5:1 are darkened within their hue in
+  adminui (`adminui-modules.css`). The Admin UI's own colours (left menu links on grey, the path label, white table
+  heads on grey, grey node tabs) are kept as the reference has them, although some are under 4.5:1 too.
