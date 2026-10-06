@@ -45,3 +45,23 @@
 #page.ezexplayoutsuinavigationpart .main-content a > span.text { color: #1a5fd8; }              /* #2970ef on whitesmoke, 4.13 */
 #page.ezexplayoutsuinavigationpart .main-content span.text.disabled { color: #686868; }       /* was #d0d0d0, 1.41 */
 #page.ezexplayoutsuinavigationpart .main-content .layouts-header > p { color: #5f5f5f; }      /* was #9d9d9d, 2.49 */
+
+/* ---- readability of Exponential's own page styles inside the Admin UI ------------------------------------------
+   Exponential's redesigned pages (written for admin4) use a few greys, greens and tints that land just under the
+   WCAG AA ratio (4.5:1) on their backgrounds, and the Admin UI link blue (#2970ef) is 4.0 to 4.3:1 on their tinted
+   panels. Each is darkened within its hue, only here. Measured values in the comments. */
+#page .rad-tag.is-ready { color: #19733f; }                                      /* #1f8a4c on #fafafb, 4.20 */
+#page .gm-avatar { background-color: #8f5a33; }                                  /* white on #a66a3f, 4.42 */
+#page .xe-handle { color: #6f7b88; }                                             /* drag handle #9aa5b1, 2.50 */
+#page .au-quick a, #page .sd-toc a, #page .exp-bm-row a.exp-bm-link,
+#page .main-content td a, #page .main-content p.path a.path { color: #1a5fd8; }  /* #2970ef on tints, 4.03 to 4.32 */
+#page .exp-bm-meta, #page .exp-bm-hint { color: #666; }                          /* #777 on white, 4.48 */
+#page .xe-help, #page .xe-help code, #page #xe-sep-help code, #page .xe-colinfo small, #page .xe-node-count,
+#page .xe-tab-active small, #page .xrowextract p { color: #535e6a; }            /* #66727f on #f3f5f8 / #eaf1ff, 4.33 to 4.49 */
+#page .gm-log-meta, #page .gm-when, #page .gm-copy, #page .gm-muted,
+#page .extension-order-hint, #page .extension-order-count { color: #56616e; }   /* #6b7785, 4.19 to 4.44 */
+#page .ezupdate-bar .ezupdate-method, #page .ezupdate-badge.ezupdate-good { color: #4f5d6e; }  /* #66768a, 4.06 to 4.33 */
+#page li.warning .sd-level { color: #9c5d00; }                                   /* #c77700 on white, 3.46 */
+#page .nl-ed-wait { color: #935700; }                                            /* #b26a00 on white, 4.24 */
+#page .pvf-badge-muted, #page .pvf-badges .label { background-color: #666; }      /* white on #777, 4.48 */
+#page .exp-dt-first:disabled, #page .exp-dt-prev:disabled, #page .exp-dt-next:disabled, #page .exp-dt-last:disabled { color: #767676; }  /* #a9a9a9, 2.35 */
