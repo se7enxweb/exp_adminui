@@ -4,6 +4,7 @@
     'my_drafts',          'My drafts'|i18n( 'design/admin/parts/my/menu' ),
     'my_pending',         'My pending items'|i18n( 'design/admin/parts/my/menu' ),
     'my_notifications',   'My notification settings'|i18n( 'design/admin/parts/my/menu' ),
+    'my_mail',            'My e-mail preferences'|i18n( 'design/admin/parts/my/menu' ),
     'my_bookmarks',       'My bookmarks'|i18n( 'design/admin/parts/my/menu' ),
     'collaboration',      'Collaboration'|i18n( 'design/admin/parts/my/menu' ),
     'change_password',    'Change password'|i18n( 'design/admin/parts/my/menu' ),
@@ -12,6 +13,27 @@
     'edit_profile',       'Edit profile'|i18n( 'design/admin/parts/my/menu' ),
     'dashboard',          'Dashboard'|i18n( 'design/admin/parts/my/menu' ),
 )}
+
+
+{* On the collaboration pages: the inbox's own shortcuts, with the open counts (admin4 and admin4l share this menu) *}
+{if and( $uri_string|begins_with( 'collaboration/' ), fetch( 'user', 'has_access_to', hash( 'module', 'collaboration', 'function', 'view' ) ) )}
+{def $cb_counts = fetch( 'collaboration', 'inbox', hash( 'limit', 1 ) ).counts}
+<div id="collaboration-menu">
+{* DESIGN: Header START *}<div class="box-header"><div class="box-ml">
+<h4>{'Inbox'|i18n( 'design/admin/collaboration/inbox' )}</h4>
+{* DESIGN: Header END *}</div></div>
+{* DESIGN: Content START *}<div class="box-bc"><div class="box-ml"><div class="box-content">
+<ul>
+    <li><a href={'collaboration/view/summary'|ezurl}>{'All items'|i18n( 'design/admin/collaboration/inbox' )} ({$cb_counts.all})</a></li>
+    <li><a href={'collaboration/view/summary/(status)/waiting/(role)/approver'|ezurl}>{'Waiting for your decision'|i18n( 'design/admin/collaboration/inbox' )} ({$cb_counts.waiting_for_me})</a></li>
+    <li><a href={'collaboration/view/summary/(status)/waiting/(role)/author'|ezurl}>{'Your items waiting for others'|i18n( 'design/admin/collaboration/inbox' )} ({$cb_counts.waiting_for_others})</a></li>
+    <li><a href={'collaboration/view/summary/(status)/approved'|ezurl}>{'Approved'|i18n( 'design/admin/collaboration/inbox' )} ({$cb_counts.approved})</a></li>
+    <li><a href={'collaboration/view/summary/(status)/denied'|ezurl}>{'Denied'|i18n( 'design/admin/collaboration/inbox' )} ({$cb_counts.denied})</a></li>
+</ul>
+{* DESIGN: Content END *}</div></div></div>
+</div>
+{undef $cb_counts}
+{/if}
 
 
 {def $custom_root_node = fetch( 'content', 'node', hash( 'node_id', 1 ) )}

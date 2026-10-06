@@ -17,7 +17,8 @@
 {if and( is_set( $search_subtree_array[0] ), $search_subtree_array[0]|ne( '1' ) )}
     {def $search_node = fetch( 'content', 'node', hash( 'node_id', $search_subtree_array[0] ))}
     {if is_set( $search_node.path_array[1] )}
-        {set $root_node_id = $search_node.path_array[1]}
+        {set $root_node_id = $search_node.path_array[1]
+             $root_node    = fetch( 'content', 'node', hash( 'node_id', $root_node_id ) )}
     {/if}
     {undef $search_node}
 {/if}
@@ -48,9 +49,8 @@ var treeMenu;
 
 {cache-block keys=array( $root_node_id, $access_type ) expiry=0}
     {def $root_node_url = $root_node.url $class_list = array()}
-    {if $root_node_id|eq( 1 )}
-        {set $root_node_url = 'content/dashboard'}
-    {elseif $root_node_url|eq('')}
+    {* The top node (1) has no URL alias of its own: it opens its full view, which lists the top-level nodes. *}
+    {if $root_node_url|eq('')}
         {set $root_node_url = concat( 'content/view/full/', $root_node_id )}
     {/if}
     {foreach fetch( 'content', 'can_instantiate_class_list', hash( 'parent_node', $root_node, 'filter_type', $filter_type, 'group_id', $filter_groups ) ) as $class}
@@ -128,6 +128,7 @@ var treeMenu;
     params.action    = "{$click_action}";
     params.context   = "{$ui_context}";
     params.hideNodes = [{$hide_node_list|implode(',')}];
+    params.maxDepth  = {ezini('TreeMenu','MaxDepth','contentstructuremenu.ini')|int};
     params.expiry    = "{fetch('content','content_tree_menu_expiry')}";
     params.useCookie = {if $menu_persistence}true{else}false{/if};
     params.path      = [{if is_set($module_result.path[0].node_id)}{foreach $module_result.path as $element}'{$element.node_id}'{delimiter},{/delimiter}{/foreach}{/if}];

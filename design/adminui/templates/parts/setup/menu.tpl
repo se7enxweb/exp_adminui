@@ -8,6 +8,7 @@
 
 {include uri='design:parts/ini_menu.tpl' ini_section='Leftmenu_setup' i18n_hash=hash(
     'setup',              'Setup'|i18n( 'design/admin/parts/setup/menu' ),
+    'audit',              'Audit'|i18n( 'design/admin/parts/setup/menu' ),
     'cache',              'Cache management'|i18n( 'design/admin/parts/setup/menu' ),
     'classes',            'Classes'|i18n( 'design/admin/parts/setup/menu' ),
     'collected',          'Collected information'|i18n( 'design/admin/parts/setup/menu' ),
@@ -15,6 +16,7 @@
     'global_setting',     'Global settings'|i18n( 'design/admin/parts/setup/menu' ),
     'ini',                'Ini settings'|i18n( 'design/admin/parts/setup/menu' ),
     'languages',          'Languages'|i18n( 'design/admin/parts/setup/menu' ),
+    'mailpreferences',    'E-mail preferences'|i18n( 'design/admin/parts/setup/menu' ),
     'notification',       'Notification'|i18n( 'design/admin/parts/setup/menu' ),
     'pdf_export',         'PDF export'|i18n( 'design/admin/parts/setup/menu', 'PDF export'),
     'packages',           'Packages'|i18n( 'design/admin/parts/setup/menu' ),
@@ -33,7 +35,12 @@
     'url_wildcards',      'URL wildcards'|i18n( 'design/admin/parts/setup/menu' ),
     'workflows',          'Workflows'|i18n( 'design/admin/parts/setup/menu' ),
     'workflow_processes', 'Workflow processes'|i18n( 'design/admin/parts/setup/menu' ),
+    'maintenance',        'Maintenance'|i18n( 'design/admin/parts/setup/menu' ),
+    'cronjobs',           'Cronjobs'|i18n( 'design/admin/parts/setup/menu' ),
+    'preload',            'Preload Sites'|i18n( 'design/admin/parts/setup/menu' ),
+    'oauth_list',         'oAuth admin'|i18n( 'design/admin/parts/setup/menu' ),
     'look_and_feel',      'Look and feel'|i18n( 'design/admin/parts/visual/menu' ),
+    'template_editor',    'Template List / Template Editor'|i18n( 'design/admin/parts/visual/menu' ),
     'menu_management',    'Menu management'|i18n( 'design/admin/parts/visual/menu' ),
     'toolbar_management', 'Toolbar management'|i18n( 'design/admin/parts/visual/menu' ),
     'templates',    'Templates'|i18n( 'design/admin/parts/visual/menu' ),

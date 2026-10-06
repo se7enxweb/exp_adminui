@@ -40,7 +40,7 @@
                                     {if $contentclass_attribute.description} <span class="classattribute-description">{first_set( $contentclass_attribute.descriptionList[$content_language], $contentclass_attribute.description)|wash}</span>{/if}
                                 </label>
                             </div>
-                            <div class="attribute-edit">                                
+                            <div class="attribute-edit">
                                 <div class="attribute-block float-break">
                                     <div class="original">
                                     {attribute_view_gui attribute_base=$attribute_base attribute=$from_content_attributes_grouped_data_map[$attribute_group][$attribute_identifier] view_parameters=$view_parameters}
@@ -105,7 +105,7 @@
 
 jQuery(function( $ )
 {
-    $('fieldset.ezcca-collapsible legend a').click( function()
+    $('fieldset.ezcca-collapsible legend a').on( 'click', function()
     {
         var container = $( this.parentNode.parentNode ), inner = container.find('div.ezcca-collapsible-fieldset-content');
         if ( container.hasClass('ezcca-collapsed') )
