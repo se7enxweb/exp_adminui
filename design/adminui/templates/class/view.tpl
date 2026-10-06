@@ -27,7 +27,7 @@
 <div class="title-wrapper">
     <span class="title-edit">{$class.identifier|class_icon( 'normal', $class.nameList[$language_code]|wash )}</span>
     <h1 class="context-title" title="{'Class name and number of objects'|i18n( 'design/admin/class/view' )}">
-        {$class.nameList[$language_code]|wash} [{$class.object_count} objects]
+        {'%namelist [%object_count objects]'|i18n( 'design/admin/class/view',, hash( '%namelist', $class.nameList[$language_code]|wash, '%object_count', $class.object_count ) )}
         <div class="clearfix">
             <span class="pull-left small">{'Last modified: %time, %username'|i18n( 'design/admin/class/view',, hash( '%username',$class.modifier.contentobject.name, '%time', $class.modified|l10n( shortdatetime ) ) )|wash}</span>
             <span class="pull-right translation small">

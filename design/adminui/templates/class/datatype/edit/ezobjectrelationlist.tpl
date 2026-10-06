@@ -69,7 +69,7 @@
                {$default_location.class_identifier|class_icon( small, $default_location.class_name )}&nbsp;{$default_location.name|wash}
              {/let}
          {/if}
-     <i>({'See'|i18n( 'design/standard/class/datatype' )} '{'Default location'|i18n( 'design/standard/class/datatype' )}')</i>
+     <i>{'(See \'%location\')'|i18n( 'design/standard/class/datatype',, hash( '%location', 'Default location'|i18n( 'design/standard/class/datatype' ) ) )}</i>
      </td>
   </tr>
 </table>
@@ -96,7 +96,7 @@
 </table>
 {/let}
 
-<input type="hidden" name="ContentClass_ezobjectrelationlist_placement_{$class_attribute.id}" value="{$default_placement.node_id}" />
+<input type="hidden" name="ContentClass_ezobjectrelationlist_placement_{$class_attribute.id}" value="{$default_placement.node_id|wash}" />
 {section-else}
     {if eq( ezini( 'BackwardCompatibilitySettings', 'AdvancedObjectRelationList' ), 'enabled' )}
 <p>{'New objects will not be placed in the content tree.'|i18n( 'design/standard/class/datatype' )}</p>

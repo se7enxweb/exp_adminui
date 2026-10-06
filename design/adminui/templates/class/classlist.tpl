@@ -93,11 +93,26 @@
                 <td>{content_view_gui view=text_linked content_object=$Classes.item.modifier.contentobject}</td>
                 <td>{$Classes.item.modified|l10n( shortdatetime )}</td>
                 <td class="number" align="right">{$Classes.item.object_count}</td>
-                <td><a href={concat( 'class/copy/', $Classes.item.id )|ezurl} title="{'Create a copy of the %class_name class.'|i18n( 'design/admin/class/classlist',, hash( '%class_name', $Classes.item.name ) )|wash}"><i class="fa fa-clone" title="Copy"></i></a></td>
-                <td><a href={concat( 'class/edit/', $Classes.item.id, '/(language)/', $Classes.item.top_priority_language_locale )|ezurl} title="{'Edit the %class_name class.'|i18n( 'design/admin/class/classlist',, hash( '%class_name', $Classes.item.name ) )|wash}"><i class="fa fa-pencil-square-o" title="Edit"></i></a></td>
+                <td><a href={concat( 'class/copy/', $Classes.item.id )|ezurl} title="{'Create a copy of the %class_name class.'|i18n( 'design/admin/class/classlist',, hash( '%class_name', $Classes.item.name ) )|wash}"><i class="fa fa-clone" title="{'copy'|i18n( 'design/admin/class/classlist' )}"></i></a></td>
+                <td><a href={concat( 'class/edit/', $Classes.item.id, '/(language)/', $Classes.item.top_priority_language_locale )|ezurl} title="{'Edit the %class_name class.'|i18n( 'design/admin/class/classlist',, hash( '%class_name', $Classes.item.name ) )|wash}"><i class="fa fa-pencil-square-o" title="{'edit'|i18n( 'design/admin/class/classlist' )}"></i></a></td>
             </tr>
             {/section}
         </table>
+
+        {* The standard admin pager. The list is paged because a large installation
+           has more of these than a screen should draw at once; the size is
+           admininterface.ini [PaginationSettings]. *}
+        {if $class_count|gt( $limit )}
+        <div class="context-toolbar">
+        {include name=ClassNavigator
+                 uri='design:navigator/google.tpl'
+                 page_uri=concat( '/class/classlist/', $GroupID )
+                 item_count=$class_count
+                 view_parameters=$view_parameters
+                 item_limit=$limit}
+        </div>
+        {/if}
+
         {section-else}
         <div class="block">
             <p>{'There are no classes in this group.'|i18n( 'design/admin/class/classlist' )}</p>
@@ -142,9 +157,9 @@
 jQuery(function( $ )//called on document.ready
 {
     // Disable bottom datatype dropp down when using new button in top
-    jQuery('#NewButtonTop').click(function()
+    jQuery('#NewButtonTop').on('click', function()
     {
-        jQuery('#ClassLanguageCodeBottom').attr('disabled', true);
+        jQuery('#ClassLanguageCodeBottom').prop('disabled', true);
     });
 });
 </script>

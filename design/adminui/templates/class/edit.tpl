@@ -37,8 +37,7 @@
         <ul>
             {section var=UnvalidatedAttributes loop=$validation.attributes}
             {section show=is_set( $UnvalidatedAttributes.item.reason )}
-                <li>attribute '{$UnvalidatedAttributes.item.identifier}': ({$UnvalidatedAttributes.item.id})
-                    {$UnvalidatedAttributes.item.reason.text|wash}
+                <li>{'attribute \'%identifier\': (%id) %text'|i18n( 'design/admin/class/edit',, hash( '%identifier', $UnvalidatedAttributes.item.identifier, '%id', $UnvalidatedAttributes.item.id, '%text', $UnvalidatedAttributes.item.reason.text|wash ) )}
                 <ul>
                 {section var=subitem loop=$UnvalidatedAttributes.item.reason.list}
                     <li>{if is_set( $subitem.identifier )}{$subitem.identifier|wash}: {/if}{$subitem.text|wash}</li>
@@ -46,7 +45,7 @@
                 </ul>
                 </li>
             {section-else}
-                <li>attribute '{$UnvalidatedAttributes.item.identifier}': {$UnvalidatedAttributes.item.name|wash} ({$UnvalidatedAttributes.item.id})</li>
+                <li>{'attribute \'%identifier\': %name (%id)'|i18n( 'design/admin/class/edit',, hash( '%identifier', $UnvalidatedAttributes.item.identifier, '%name', $UnvalidatedAttributes.item.name|wash, '%id', $UnvalidatedAttributes.item.id ) )}</li>
             {/section}
             {/section}
         </ul>
@@ -173,7 +172,7 @@
         {def $attribute_categorys        = ezini( 'ClassAttributeSettings', 'CategoryList', 'content.ini' )
              $attribute_default_category = ezini( 'ClassAttributeSettings', 'DefaultCategory', 'content.ini' )
              $priority_value = 0}
-        <table id="ezcca-edit-list" class="list special" cellspacing="0" summary="{'List of class attributes'|i18n( 'design/admin/class/edit' )}">
+        <table id="ezcca-edit-list" data-move-failed="{'The attribute could not be moved; the order is as it was.'|i18n( 'design/admin/class/edit' )|wash}" class="list special" cellspacing="0" summary="{'List of class attributes'|i18n( 'design/admin/class/edit' )}">
             <tbody>
                 {section var=Attributes loop=$attributes sequence=array( bglight, bgdark )}
 
@@ -188,8 +187,10 @@
                                 </th>
                                 <th class="wide">{$Attributes.number}. {$Attributes.item.name|wash} [{$Attributes.item.data_type.information.name|wash}] (id:{$Attributes.item.id})</th>
                                 <th class="tight listbutton">
-                                    <button name="MoveDown_{$Attributes.item.id}" title="{'Use the order buttons to set the order of the class attributes. The up arrow moves the attribute one place up. The down arrow moves the attribute one place down.'|i18n( 'design/admin/class/edit' )|wash}"><i class="fa fa-arrow-down"></i></button>
-                                    <button name="MoveUp_{$Attributes.item.id}" title="{'Use the order buttons to set the order of the class attributes. The up arrow moves the attribute one place up. The down arrow moves the attribute one place down.'|i18n( 'design/admin/class/edit' )|wash}"><i class="fa fa-arrow-up"></i></button>
+                                    <button name="MoveTop_{$Attributes.item.id}" title="{'Move this attribute to the top.'|i18n( 'design/admin/class/edit' )|wash}"><i class="fa fa-angle-double-up"></i><span class="sr-only">{'Top'|i18n( 'design/admin/class/edit' )}</span></button>
+                                    <button name="MoveUp_{$Attributes.item.id}" title="{'Use the order buttons to set the order of the class attributes. The up arrow moves the attribute one place up. The down arrow moves the attribute one place down.'|i18n( 'design/admin/class/edit' )|wash}"><i class="fa fa-arrow-up"></i><span class="sr-only">{'Up'|i18n( 'design/admin/class/edit' )}</span></button>
+                                    <button name="MoveDown_{$Attributes.item.id}" title="{'Use the order buttons to set the order of the class attributes. The up arrow moves the attribute one place up. The down arrow moves the attribute one place down.'|i18n( 'design/admin/class/edit' )|wash}"><i class="fa fa-arrow-down"></i><span class="sr-only">{'Down'|i18n( 'design/admin/class/edit' )}</span></button>
+                                    <button name="MoveBottom_{$Attributes.item.id}" title="{'Move this attribute to the bottom.'|i18n( 'design/admin/class/edit' )|wash}"><i class="fa fa-angle-double-down"></i><span class="sr-only">{'Bottom'|i18n( 'design/admin/class/edit' )}</span></button>
                                     <input class="form-control" size="2" maxlength="4" type="text" name="ContentAttribute_priority[{$Attributes.item.id}]" value="{$priority_value}" />
                                 </th>
                             </tr>
@@ -334,61 +335,99 @@
 <script type="text/javascript">
 jQuery(function( $ )//called on document.ready
 {
+    // .length, not .size(): jQuery 3 removed .size(), and the call threw
+    // before the move buttons below were set up, so every click posted the
+    // whole form and reloaded the page (with an older jQuery it worked).
     var el = $('#LastChangedID input[name^=ContentAttribute_name]');
-    if ( el.size() ) {
+    if ( el.length ) {
         window.scrollTo(0, Math.max( el.offset().top - 180, 0 ));
-        el.focus();
+        el.trigger( 'focus' );
     }
 
-    // Axaify all move up/down buttons
-    var moveButtons = $('#ezcca-edit-list .listbutton [name^=Move]');
-    moveButtons.click(function( e )
+    var list = $('#ezcca-edit-list');
+    var status = $('<p class="ezcca-move-status" role="status" aria-live="polite"></p>').insertBefore( list ).data( 'failed', list.attr( 'data-move-failed' ) );
+
+    // The numbers in front of the names and the row colours follow the rows.
+    function renumberAttributes()
     {
-        // Prevent form from being sent and make sure user is not able to duble click on button and causing issues
+        list.children('tbody').children('tr.ezcca-edit-list-item').each( function( i )
+        {
+            var th = $(this).find('> td > table > tbody > tr > th.wide, > td > table > tr > th.wide').first();
+            th.html( th.html().replace( /^\s*\d+\./, ( i + 1 ) + '.' ) );
+            $(this).removeClass( 'bglight bgdark' ).addClass( i % 2 ? 'bgdark' : 'bglight' );
+        });
+    }
+
+    function buttons( on )
+    {
+        list.find('.listbutton [name^=Move]').prop( 'disabled', !on ).toggleClass( 'disabled', !on );
+    }
+
+    // Move up, down, to the top or to the bottom, in place; the server
+    // stores it, and a move it did not store is put back, so the page never
+    // shows an order that is not saved. The priority fields follow the rows,
+    // so Apply and OK store the order shown.
+    function rows()
+    {
+        return list.children('tbody').children('tr.ezcca-edit-list-item');
+    }
+    function priorities()
+    {
+        rows().each( function( i ) { $(this).find('input[name^=ContentAttribute_priority]').val( ( i + 1 ) * 10 ); } );
+    }
+    list.find('.listbutton [name^=Move]').on('click', function( e )
+    {
         e.preventDefault();
-        $('#ezcca-edit-list .listbutton [name^=Move]').attr( "disabled", true ).addClass('disabled');
-        var tr = $(this).closest('tr.ezcca-edit-list-item'), param = this.name.split('_'), up = param[0] === 'MoveUp';
-
-        // swap items in dom, or skip if number is to high / low
-        if ( up )
+        var tr = $(this).closest('tr.ezcca-edit-list-item'), param = this.name.split('_'), action = param[0];
+        var all = rows(), from = all.index( tr ), last = all.length - 1;
+        var to = { MoveUp: from - 1, MoveDown: from + 1, MoveTop: 0, MoveBottom: last }[ action ];
+        if ( to === undefined || to < 0 || to > last || to === from )
+            return false;
+        buttons( false );
+        var place = function( index )
         {
-            var swap = tr.prev();
-            if ( !swap.size() )
-                return onDone();
-            swap.before( tr );
-        }
-        else
-        {
-            var swap = tr.next();
-            if ( !swap.size() )
-                return onDone();
-            swap.after( tr );
-        }
+            var others = rows().not( tr );
+            if ( index >= others.length ) others.last().after( tr ); else others.eq( index ).before( tr );
+            renumberAttributes();
+            priorities();
+        };
+        place( to );
 
-        // swap priority number
-        var inp = tr.find('input[name^=ContentAttribute_priority]'), inp2 = swap.find('input[name^=ContentAttribute_priority]'), inpv = inp.val();
-        inp.val( inp2.val() );
-        inp2.val( inpv );
-
-        // store with ajax request
         var postVar = { 'ContentClassHasInput': 0 }, _tokenNode = document.getElementById('ezxform_token_js');
-        postVar[ param[0] ] = param[1];
+        var meta = document.querySelector('meta[name="csrf-token"]');
+        postVar[ action ] = param[1];
         if ( _tokenNode ) postVar['ezxform_token'] = _tokenNode.getAttribute('title');
-        $.post( $('#ClassEdit').attr('action'), postVar, onDone );
+        $.ajax({
+            type: 'POST',
+            url: $('#ClassEdit').attr('action'),
+            data: postVar,
+            headers: meta ? { 'X-CSRF-Token': meta.getAttribute('content') } : {}
+        }).done( function( data, text, xhr )
+        {
+            // Only a server that stored the move says so; anything else (an
+            // ordinary page) means it did not.
+            if ( xhr.getResponseHeader( 'X-Class-Attribute-Moved' ) !== '1' )
+            {
+                place( from );
+                status.text( status.data( 'failed' ) ).addClass( 'is-error text-danger' );
+                return;
+            }
+            status.text( '' ).removeClass( 'is-error text-danger' );
+        }).fail( function( xhr )
+        {
+            place( from );
+            status.text( status.data( 'failed' ) + ' (HTTP ' + xhr.status + ')' ).addClass( 'is-error text-danger' );
+        }).always( function()
+        {
+            buttons( true );
+        });
         return false;
     });
 
-    function onDone()
-    {
-        // Re-enable buttons now that ajax request has returned or it was skipped
-        $('#ezcca-edit-list .listbutton [name^=Move]').attr( "disabled", false ).removeClass('disabled');
-        return false;
-    }
-
     // Disable bottom datatype dropp down when using new button in top
-    jQuery('#NewButtonTop').click(function()
+    jQuery('#NewButtonTop').on('click', function()
     {
-        jQuery('#DataTypeString').attr('disabled', true);
+        jQuery('#DataTypeString').prop('disabled', true);
     });
 });
 </script>
