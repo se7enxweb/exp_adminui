@@ -65,7 +65,7 @@
                         <div class="layout-column-inner">
                             <div class="inner-cell">
                                 <div class="main-content">
-                                    {if and( is_set( $module_result.path ), $module_result.path|count|gt( 0 ) )}
+                                    {if and( is_set( $module_result.path ), $module_result.path|count|gt( 0 ), ezini( 'AdminUISettings', 'NoPathNavigationParts', 'exp_adminui.ini' )|contains( $adminui_navpart )|not )}
                                         <div id="path"{if $content_edit} class="path-edit"{/if}>
                                             <div id="path-design">
                                                 {include uri='design:adminui/page_toppath.tpl'}
