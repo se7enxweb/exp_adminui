@@ -1,0 +1,99 @@
+/*!
+ * Exponential Admin UI (exp_adminui): the Netgen Admin UI look for markup that Exponential 6 draws differently
+ * from the reference. The reference's own stylesheet (style.css) is copied unchanged and loaded before this file;
+ * this file only translates its rules to Exponential's markup, mainly the Exponential UI widgets (exp::datatable)
+ * that take the place of the YUI ones. Each block names the style.css rules it mirrors.
+ * GNU General Public License v2.0 (or any later version).
+ */
+
+/* ---- sub-items table (style.css "subitems yui control" and ".yui-dt") ------------------------------------ */
+.exp-dt, .exp-dt-actions, .exp-dt-pager, .exp-dt-dialog {
+    --exp-dt-head: #a7a7a7; --exp-dt-head-sortable: #a7a7a7; --exp-dt-head-sorted: #919191; --exp-dt-head-ink: #fff;
+    --exp-dt-head-line: transparent; --exp-dt-row: #fff; --exp-dt-row-alt: #fff; --exp-dt-row-hover: #f5f5f5;
+    --exp-dt-line: #f5f5f5; --exp-dt-link: #2970ef; --exp-dt-button-ink: #4b4b4b; --exp-dt-button-line: #e4e4e4;
+    --exp-dt-button-hover: #adadad;
+}
+#action-controls-container { display: flex; flex-wrap: wrap; align-items: flex-start; margin: 5px 0 15px; }
+#action-controls-container #action-controls { display: flex; flex: 1 1 auto; flex-wrap: wrap; float: none; margin: 0; }
+#action-controls-container #tpg { float: none; margin: 0 0 0 5px; }
+#action-controls .exp-dt-action-group { display: block; vertical-align: top; }
+/* the reference's order: Select and More actions as one group, then the blue Create button, Table options on the right */
+#action-controls .exp-dt-action-group:has(#ezbtn-items) { order: 1; }
+#action-controls .exp-dt-action-group:has(#ezbtn-more) { order: 2; margin-left: -1px; }
+#action-controls .exp-dt-action-group:has(#ezbtn-new) { order: 3; margin-left: 5px; }
+#action-controls .exp-dt-action-group:has(#ezbtn-new-multi) { order: 4; margin-left: 5px; }
+#action-controls .exp-dt-action-group:has(#ezbtn-options) { order: 5; margin-left: auto; }
+#action-controls-container .exp-dt-action {
+    margin: 0; padding: 9px 14px; border: 1px solid #e4e4e4; border-radius: 4px; background: #fff;
+    color: #4b4b4b; font-size: 1em; line-height: 1.42857143; text-shadow: none; position: relative;
+}
+#action-controls-container .exp-dt-action:hover { z-index: 2; background: #e6e6e6; border-color: #adadad; }
+#action-controls-container #ezbtn-items { border-radius: 4px 0 0 4px; }
+#action-controls-container #ezbtn-more { border-radius: 0 4px 4px 0; }
+#action-controls-container .exp-dt-button {
+    padding: 0; background: transparent; color: inherit; font: inherit; line-height: inherit;
+}
+#action-controls-container .exp-dt-button::before, #action-controls-container .exp-dt-button::after {
+    display: inline-block; font: normal normal normal 14px FontAwesome; text-rendering: auto; -webkit-font-smoothing: antialiased;
+}
+#action-controls-container .exp-dt-button::before { margin-right: 6px; }
+#action-controls-container .exp-dt-button::after { margin-left: 6px; }
+#action-controls-container #ezbtn-items-button::before { content: "\f046"; }
+#action-controls-container #ezbtn-new-button::before { content: "\f0fe"; }
+#action-controls-container #ezbtn-new-multi-button::before { content: "\f0c5"; }
+#action-controls-container #ezbtn-more-button::after { content: "\f0d7"; }
+#action-controls-container #ezbtn-options-button::before { content: "\f0ce"; }
+#action-controls-container #ezbtn-new, #action-controls-container #ezbtn-new-multi { background: #2970ef; border-color: #2970ef; color: #fff; }
+#action-controls-container #ezbtn-new:hover, #action-controls-container #ezbtn-new-multi:hover { background: #1862e6; border-color: #1862e6; }
+#action-controls-container .exp-dt-action-disabled { opacity: 0.65; cursor: not-allowed; }
+#action-controls-container .exp-dt-action-disabled:hover { background: #fff; border-color: #e4e4e4; }
+
+/* the menus of Select, More actions and Create (style.css .yuimenu, .yuimenuitemlabel) */
+#action-controls-container .exp-dt-menu {
+    min-width: 180px; padding: 5px 0; border: none; border-radius: 4px; box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.35);
+    margin-top: 2px; line-height: 1.42857143;
+}
+#action-controls-container .exp-dt-menu-group { background: #6b6b6b; color: #fff; font-weight: 400; font-size: 14px; margin: 0; padding: 4px 8px; }
+#action-controls-container .exp-dt-menu li { padding: 0; }
+#action-controls-container .exp-dt-menu [role=menuitem] { display: block; padding: 4px 8px; color: #333; text-decoration: none; }
+
+/* the pagers: compact one at the top right, full one under the table (style.css .yui-pg-*) */
+.exp-dt-first, .exp-dt-prev, .exp-dt-next, .exp-dt-last {
+    box-sizing: border-box; width: auto; height: auto; margin: 0; padding: 7px 16px; float: left;
+    border: 1px solid #e4e4e4; border-radius: 0; background: #fff; color: #333;
+    font-family: inherit; font-size: 12px; line-height: 1.42857143; text-align: center;
+}
+.exp-dt-prev, .exp-dt-next { font-size: 18px; }
+.exp-dt-first:hover, .exp-dt-prev:hover, .exp-dt-next:hover, .exp-dt-last:hover { background: #e6e6e6; border-color: #adadad; }
+.exp-dt-first:disabled, .exp-dt-prev:disabled, .exp-dt-next:disabled, .exp-dt-last:disabled {
+    background: #fff; color: #a9a9a9; border-color: #e5e5e5; cursor: not-allowed;
+}
+.exp-dt-first span, .exp-dt-prev span, .exp-dt-next span, .exp-dt-last span { margin: 0; }
+.exp-dt-first [data-icon]::before, .exp-dt-prev [data-icon]::before, .exp-dt-next [data-icon]::before, .exp-dt-last [data-icon]::before {
+    display: inline-block; font: normal normal normal 14px FontAwesome; font-size: inherit; -webkit-font-smoothing: antialiased;
+}
+.exp-dt-first [data-icon]::before { content: "\f048"; }
+.exp-dt-prev [data-icon]::before { content: "\f0d9"; }
+.exp-dt-next [data-icon]::before { content: "\f0da"; }
+.exp-dt-last [data-icon]::before { content: "\f051"; }
+.exp-dt-pager-compact { display: flex; }
+.exp-dt-pager-compact .exp-dt-prev, .exp-dt-backward .exp-dt-first, .exp-dt-forward .exp-dt-next { border-radius: 4px 0 0 4px; }
+.exp-dt-pager-compact .exp-dt-next, .exp-dt-backward .exp-dt-prev, .exp-dt-forward .exp-dt-last { border-radius: 0 4px 4px 0; margin-left: -1px; }
+.exp-dt-pager-compact .exp-dt-prev, .exp-dt-pager-compact .exp-dt-next { padding: 9px 16px; line-height: 20px; }
+.exp-dt-page { padding: 4px 8px; border: 1px solid #e4e4e4; border-radius: 2px; color: #333; font: inherit; }
+.exp-dt-page.exp-dt-current { border-color: #333; font-weight: 700; }
+
+/* the table itself */
+.exp-dt-table thead th {
+    padding: 10px; border: none; background: #a7a7a7; color: #fff; font-size: 11px; font-weight: 500;
+    text-transform: uppercase; line-height: 20px; vertical-align: middle;
+}
+.exp-dt-table thead th.exp-dt-sortable { padding: 0; }
+.exp-dt-table thead th.exp-dt-asc, .exp-dt-table thead th.exp-dt-desc { background: #919191; }
+.exp-dt-table thead th .exp-dt-sort { padding: 10px 26px 10px 10px; line-height: 20px; font-size: 11px; font-weight: 500; text-transform: uppercase; }
+.exp-dt-table thead th .fa { font-size: 16px; }
+.exp-dt-body tr, .exp-dt-body tr:nth-child(even) { background: #fff; }
+.exp-dt-body tr:hover { background: #f5f5f5; }
+.exp-dt-body tr:first-child td { border-top: none; }
+.exp-dt-table tbody td { padding: 10px; border-bottom: 2px solid #f5f5f5; color: #4a4a4a; font-size: 1em; }
+.exp-dt-table tbody td a { color: #2970ef; }

@@ -23,3 +23,5 @@
 <link rel="stylesheet" type="text/css" href={'stylesheets/font-awesome.css'|ezdesign} />
 <link rel="stylesheet" type="text/css" href={'stylesheets/icomoon.css'|ezdesign} />
 <link rel="stylesheet" type="text/css" href={'stylesheets/style.css'|ezdesign} />
+{* this design's own additions: the Admin UI look for Exponential's markup (the Exponential UI widgets) *}
+<link rel="stylesheet" type="text/css" href={'stylesheets/adminui.css'|ezdesign} />

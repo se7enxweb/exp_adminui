@@ -10,7 +10,7 @@ reference at 1440, 960@2 and 390@2; diff % is the share of differing pixels at 1
 |---|---|---|---|---|
 | Frame: header, search, side bar, user menu, left column, path, footer | all | live | | pagelayout.tpl and templates/adminui/* |
 | Dashboard | /content/dashboard | live | | alpha's own dashboard blocks (showcase tour) differ in content |
-| Content structure (node view, tabs, sub-items) | /content/view/full/2 | live | | |
+| Content structure (node view, tabs, sub-items) | /content/view/full/2 | live | | sub-items table: admin4 exp::datatable restyled by adminui.css (reference: YUI 2 DataTable) |
 | Media library | /content/view/full/43 | live | | |
 | User accounts | /content/view/full/5 | live | | |
 | Setup: cache | /setup/cache | live | | |
