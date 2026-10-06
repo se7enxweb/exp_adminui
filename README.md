@@ -22,6 +22,16 @@ Status: in development (1.0.0.0-dev). See [doc/PROGRESS.md](doc/PROGRESS.md) for
 
 ## Install
 
+**A new Exponential installation sets the siteaccess up by itself.** Since 2026-10-06 (Exponential 6.0.15 setup,
+and the `sevenx_multisite` and `sevenx_multisite_clean` installer packages published that day) the setup wizard, the
+kickstarter, `exp:install` and the multisite package installer create the `adminui` siteaccess by default whenever
+`extension/exp_adminui` is in the installation: `settings/siteaccess/adminui/` as a copy of the admin siteaccess's
+settings with the design chain below, `ActiveAccessExtensions[]=exp_adminui` and empty `icon.ini.append.php` and
+`ezoe.ini.append.php`, and `adminui` in `AvailableSiteAccessList[]` and `SiteList[]`, matched by URI only (no host
+mapping). Put the extension in place before installing, and open `https://<host>/adminui`. Without the extension the
+installation creates nothing and notes why in `var/log/setup.log`. The steps below are for an installation that
+already exists.
+
 1. Put the extension in `extension/exp_adminui`, from its repository
    [github.com/se7enxweb/exp_adminui](https://github.com/se7enxweb/exp_adminui):
 
