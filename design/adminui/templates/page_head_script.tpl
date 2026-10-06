@@ -11,7 +11,13 @@
 {else}
  {ezscript_load( array( 'ezjsc::jquery', 'ezjsc::jqueryio' ) )}
 {/if}
-<script type="text/javascript" src={'javascript/ngadminui/resizable.js'|ezdesign}></script>
+{* jQuery UI resizable for the left column: only where no jQuery UI is loaded yet. The copy is jQuery UI 1.11 with its
+   own widget factory; loaded over a page's newer jQuery UI (eztags' tree picker) it broke that page's widgets. A
+   jQuery UI without resizable gets a no-op, so the column simply keeps its width. *}
+<script type="text/javascript">
+if ( !( window.jQuery && jQuery.ui ) ) document.write( '<script type="text/javascript" src="' + {'javascript/ngadminui/resizable.js'|ezdesign( 'single' )} + '"><\/script>' );
+else if ( !jQuery.fn.resizable ) jQuery.fn.resizable = function () {ldelim} return this; {rdelim};
+</script>
 <script type="text/javascript" src={'javascript/ngadminui/bootstrap.js'|ezdesign}></script>
 <script type="text/javascript" src={'javascript/ngadminui/ace/ace.js'|ezdesign}></script>
 <script type="text/javascript" src={'javascript/ngadminui/ace/ext-language_tools.js'|ezdesign}></script>
