@@ -32,7 +32,7 @@ Exponential 6 renders everything with its own template engine, so:
 ```
 adminui   (this extension: frame, Admin UI views, stylesheets, fonts, images, scripts)
 admin4l   (Exponential: the admin page assembled from admin layout zones; its pagelayout is not used here)
-admin4    (Exponential: the complete admin design, Exponential UI widgets, jQuery 4)
+admin4    (Exponential: the complete admin design, Exponential UI widgets, no jQuery)
 admin3, admin2, admin   (older admin designs, for templates extensions bring in their own admin folders)
 ```
 
@@ -46,8 +46,10 @@ the reference never had (audit, newsletter, git manager, layouts ...). They get 
 1. **Head** (`adminui/page_head.tpl`): favicons, the base path meta tag, the old admin's left/right menu size
    styles. `page_head_style.tpl` loads the legacy stylesheets and the extensions' `BackendCSSFileList` through
    ezjscore, then links `font-awesome.css`, `icomoon.css`, `style.css` and `adminui.css` as plain files, as the
-   reference does. `page_head_script.tpl` loads jQuery 4 and the admin scripts (`BackendJavaScriptList`, with
-   Exponential UI), then the Admin UI scripts: jQuery UI resizable, Bootstrap 3 (side bar dropdowns), Ace, `app.js` and `exp_adminui_aside_dropdown_keys.js`
+   reference does. `page_head_script.tpl` loads jQuery 4 and the admin scripts: `BackendJavaScriptList` and
+   `ClassicBackendJavaScriptList` (`design.ini [JavaScriptSettings]`). admin4 loads no jQuery and reads only the
+   first; the second names what the older admin designs still load on every page with jQuery, Exponential UI's
+   modules and eztags' jQuery plugins among them; on a kernel without that setting the head loads the first alone. Then the Admin UI scripts: jQuery UI resizable, Bootstrap 3 (side bar dropdowns), Ace, `app.js` and `exp_adminui_aside_dropdown_keys.js`
    (Escape closes a side bar dropdown; the arrow keys in the Interface dropdown, which Bootstrap 3 cancelled), and
    `exp_adminui_actions.js`.
 
