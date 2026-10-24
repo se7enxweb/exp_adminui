@@ -3,6 +3,15 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.51 (2026-10-24)
+
+- Added: The login form has a Remember me box, checked by default (shown when site.ini [Session]
+  RememberMeTimeout is set; Exponential 6.0.15 sets it to 360 days). Before, an Admin UI sign-in always ended
+  with the browser session.
+- Added: Change password at next sign-in. The account form has the kernel's checkbox, shown only when you edit
+  someone else's account and ticked while the account is new; the password page tells a marked user why they
+  are there. Needs Exponential 6.0.15.
+
 ## 1.0.0.50 (2026-10-21)
 
 - Updated: The Media library, User accounts and Webshop tabs name their icons in the adminui siteaccess's
