@@ -33,6 +33,13 @@
             <input type="password" class="form-control" size="10" name="Password" id="passwordtext" placeholder="{'Password'|i18n( 'design/adminui/login' )}" tabindex="2" title="{'Enter a valid password in this field.'|i18n( 'design/adminui/login' )}" autocomplete="current-password" />
         </div>
 
+        {* Remember me, checked by default (site.ini [Session] RememberMeTimeout): the sign-in survives closing the browser *}
+        {if and( ezini_hasvariable( 'Session', 'RememberMeTimeout' ), ezini( 'Session', 'RememberMeTimeout' ) )}
+        <div class="checkbox">
+            <label for="id3"><input type="checkbox" name="Cookie" id="id3" checked="checked" tabindex="3" /> {'Remember me'|i18n( 'design/admin/user/login' )}</label>
+        </div>
+        {/if}
+
         <input type="hidden" name="RedirectURI" value="{$User:redirect_uri|wash}" />
 
         <button class="btn btn-primary" type="submit" id="loginbutton" name="LoginButton" value="{'Log in'|i18n( 'design/adminui/login' )}" tabindex="3" title="{'Click here to log in using the username/password combination entered in the fields above.'|i18n( 'design/adminui/login' )}">{'Log in'|i18n( 'design/adminui/login' )}</button>
