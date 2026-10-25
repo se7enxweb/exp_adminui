@@ -358,3 +358,15 @@ table th a:hover { color: #fff; text-decoration: underline; }
         position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; white-space: normal;
     }
 }
+
+/* "Sign in with a passkey" under "Log in" (user/login.tpl, shown by exp_passkey.js where the browser can use
+   passkeys): an outlined button the width of the form, on the frame's dark background, and the status line. */
+.loginpage form .btn.aui-passkey-button {
+    display: block; width: 100%; margin: 12px 0 0; padding: 11px;
+    border: 1px solid #b3b3b3; border-radius: 0; background: transparent; color: #fff;
+    font-size: 16px; font-weight: 500;
+}
+.loginpage form .btn.aui-passkey-button:hover, .loginpage form .btn.aui-passkey-button:focus { border-color: #fff; background: #444444; color: #fff; }
+.loginpage form .btn.aui-passkey-button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.loginpage form .aui-passkey-status { margin: 12px 0 0; }
+.loginpage form [hidden] { display: none !important; }
