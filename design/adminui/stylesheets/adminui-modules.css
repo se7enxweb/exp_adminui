@@ -83,10 +83,3 @@
    put it back only part of the way, so it stood 5px left of the other tabs and the breadcrumbs */
 #page .main-content .exp-node-layout-tab.row { margin-inline-start: 0; margin-inline-end: 0; }
 #page .main-content .exp-node-layout-tab > .layouts-content { padding-inline-start: 0 !important; padding-inline-end: 0 !important; }
-
-/* ---- Help (the kernel's exphelp module, admin4 templates) ---------------------------------------------------- */
-/* The help pages measure their own width (.a4-help is an inline-size container, modules/help.css). The Admin UI's
-   .main-content is a flex column, where an item with auto side margins takes the width of its content, and a
-   container's content has none: the page shrank to a few pixels and its headings ran down one letter per line. The
-   wrapper takes the column's width instead (its own max-width and margins still centre it). */
-#page .main-content > .a4-help { width: 100%; box-sizing: border-box; }
