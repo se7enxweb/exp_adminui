@@ -11,7 +11,7 @@ Source: `se7enxweb/admin-ui-bundle` 2.9.15, `bundle/Resources/views/`. Target: `
 | `pagelayout_legacy.html.twig`, `pagelayout_module.html.twig` | `pagelayout.tpl` | The legacy module result is the page content; versionview hides the side bar |
 | `page_head.html.twig` | `adminui/page_head.tpl` | Favicons (Exponential mark), base path meta, menu size styles |
 | `page_head_style.html.twig` | `page_head_style.tpl` | Legacy CSS through ezjscore, then the three Admin UI files and `adminui.css` |
-| `page_head_script.html.twig` | `page_head_script.tpl` | jQuery 4 + admin scripts, then resizable, Bootstrap, Ace, `app.js`; no YUI stand-ins |
+| `page_head_script.html.twig` | `page_head_script.tpl` | jQuery 4 + admin scripts (`BackendJavaScriptList`, `ClassicBackendJavaScriptList`), then resizable, Bootstrap, Ace, `app.js`; no YUI stand-ins |
 | `page_aside_user.html.twig` | `adminui/page_aside_user.tpl` | Avatar from `page_aside_user.tpl` (legacy helper), else `a0.jpg` |
 | `page_leftmenu.html.twig` + `menu/plugins/legacy/left.html.twig` | `adminui/page_leftmenu.tpl` | `$module_result.left_menu` or `parts/<part>/menu.tpl` |
 | `page_search.html.twig`, `parts/search_box.html.twig` | `adminui/page_search.tpl`, `adminui/parts/search_box.tpl` | |
