@@ -3,6 +3,14 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.52 (2026-10-26)
+
+- Updated: The Admin UI head loads ClassicBackendJavaScriptList after BackendJavaScriptList, from ekked's pull
+  request #4.
+- Updated: The login page offers passkey sign-in, as the admin design's does.
+- Updated: The account page has the Passkeys and Your devices cards of the admin design.
+- Fixed: The inline CSS test finds the login page's passkey classes in adminui.css.
+
 ## 1.0.0.51 (2026-10-24)
 
 - Added: The login form has a Remember me box, checked by default (shown when site.ini [Session]
