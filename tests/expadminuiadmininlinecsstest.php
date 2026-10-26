@@ -53,9 +53,11 @@ foreach ( $stylesheets as $path )
     $sheet .= is_file( $root . '/' . $path ) ? file_get_contents( $root . '/' . $path ) : '';
 }
 
-// IC-03 (the dashboard's aui-dash-* classes are in adminui-dashboard.css, linked by page_head_style.tpl; a class
+// IC-03 (the dashboard's aui-dash-* classes are in adminui-dashboard.css and the login page's aui-passkey-* in the
+// design's own adminui.css, both linked by page_head_style.tpl; a class
 // ending in "-" is the fixed part of one with a value from the template, aui-rows-{...}, aui-dw-{...})
 $sheet .= (string)@file_get_contents( $root . '/design/adminui/stylesheets/adminui-dashboard.css' );
+$sheet .= (string)@file_get_contents( $root . '/design/adminui/stylesheets/adminui.css' );
 $missing = array();
 if ( $prefix !== '' )
     foreach ( $templates as $path => $source )
