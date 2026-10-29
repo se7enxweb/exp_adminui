@@ -3,6 +3,10 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.57 (2026-10-29)
+
+- Updated: One copyright notice, Exponential Foundation and 7x.
+
 ## 1.0.0.56 (2026-10-29)
 
 - Updated: One copyright notice, Exponential Foundation and 7x.
