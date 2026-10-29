@@ -3,6 +3,10 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.56 (2026-10-29)
+
+- Updated: One copyright notice, Exponential Foundation and 7x.
+
 ## 1.0.0.55 (2026-10-29)
 
 - Updated: The footer carries the kernel notice "Exponential Copyright © 1998-2026 Exponential Foundation and 7x" (the same message as the admin designs, so it is translated already), and its Exponential link goes to https://exponential.earth; the old "1998-today 7x and others" line is gone.
