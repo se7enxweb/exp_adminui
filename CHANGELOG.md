@@ -3,6 +3,10 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.53 (2026-10-28)
+
+- Removed: The Admin UI's width rule for .a4-help, which no help page uses any more.
+
 ## 1.0.0.52 (2026-10-26)
 
 - Updated: The Admin UI head loads ClassicBackendJavaScriptList after BackendJavaScriptList, from ekked's pull
