@@ -25,14 +25,14 @@
 #action-controls .exp-dt-action-group:has(#ezbtn-new-multi) { order: 4; margin-inline-start: 5px; }
 #action-controls .exp-dt-action-group:has(#ezbtn-options) { order: 5; margin-inline-start: auto; }
 #action-controls-container .exp-dt-action {
-    margin: 0; padding: 9px 14px; border: 1px solid #e4e4e4; border-radius: 4px; background: #fff;
+    margin: 0; padding: 9px 14px; border: 1px solid #e4e4e4; border-radius: var(--a4-radius-s); background: #fff;
     color: #4b4b4b; font-size: 1em; line-height: 1.42857143; text-shadow: none; position: relative;
 }
 #action-controls-container .exp-dt-action:hover { z-index: 2; background: #e6e6e6; border-color: #adadad; }
-#action-controls-container #ezbtn-items { border-radius: 4px 0 0 4px; }
-:where([dir="rtl"]) #action-controls-container #ezbtn-items { border-radius: 0 4px 4px 0; }
-#action-controls-container #ezbtn-more { border-radius: 0 4px 4px 0; }
-:where([dir="rtl"]) #action-controls-container #ezbtn-more { border-radius: 4px 0 0 4px; }
+#action-controls-container #ezbtn-items { border-radius: var(--a4-radius-s) 0 0 var(--a4-radius-s); }
+:where([dir="rtl"]) #action-controls-container #ezbtn-items { border-radius: 0 var(--a4-radius-s) var(--a4-radius-s) 0; }
+#action-controls-container #ezbtn-more { border-radius: 0 var(--a4-radius-s) var(--a4-radius-s) 0; }
+:where([dir="rtl"]) #action-controls-container #ezbtn-more { border-radius: var(--a4-radius-s) 0 0 var(--a4-radius-s); }
 #action-controls-container .exp-dt-button {
     padding: 0; background: transparent; color: inherit; font: inherit; line-height: inherit;
 }
@@ -53,11 +53,11 @@
 
 /* the menus of Select, More actions and Create (style.css .yuimenu, .yuimenuitemlabel) */
 #action-controls-container .exp-dt-menu {
-    min-width: 180px; padding: 5px 0; border: none; border-radius: 4px; box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.35);
+    min-width: 180px; padding: 5px 0; border: none; border-radius: var(--a4-radius-s); box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.35);
     margin-top: 2px; line-height: 1.42857143;
 }
 :where([dir="rtl"]) #action-controls-container .exp-dt-menu { box-shadow: -1px 1px 4px 0 rgba(0, 0, 0, 0.35); }
-#action-controls-container .exp-dt-menu-group { background: #6b6b6b; color: #fff; font-weight: 400; font-size: 14px; margin: 0; padding: 4px 8px; }
+#action-controls-container .exp-dt-menu-group { background: #6b6b6b; color: #fff; font-weight: normal; font-size: 14px; margin: 0; padding: 4px 8px; }
 #action-controls-container .exp-dt-menu li { padding: 0; }
 #action-controls-container .exp-dt-menu [role=menuitem] { display: block; padding: 4px 8px; color: #333; text-decoration: none; }
 
@@ -82,22 +82,22 @@
 .exp-dt-next [data-icon]::before { content: "\f0da"; }
 .exp-dt-last [data-icon]::before { content: "\f051"; }
 .exp-dt-pager-compact { display: flex; }
-.exp-dt-pager-compact .exp-dt-prev, .exp-dt-backward .exp-dt-first, .exp-dt-forward .exp-dt-next { border-radius: 4px 0 0 4px; }
-:where([dir="rtl"]) .exp-dt-pager-compact .exp-dt-prev, :where([dir="rtl"]) .exp-dt-backward .exp-dt-first, :where([dir="rtl"]) .exp-dt-forward .exp-dt-next { border-radius: 0 4px 4px 0; }
-.exp-dt-pager-compact .exp-dt-next, .exp-dt-backward .exp-dt-prev, .exp-dt-forward .exp-dt-last { border-radius: 0 4px 4px 0; margin-inline-start: -1px; }
-:where([dir="rtl"]) .exp-dt-pager-compact .exp-dt-next, :where([dir="rtl"]) .exp-dt-backward .exp-dt-prev, :where([dir="rtl"]) .exp-dt-forward .exp-dt-last { border-radius: 4px 0 0 4px; }
+.exp-dt-pager-compact .exp-dt-prev, .exp-dt-backward .exp-dt-first, .exp-dt-forward .exp-dt-next { border-radius: var(--a4-radius-s) 0 0 var(--a4-radius-s); }
+:where([dir="rtl"]) .exp-dt-pager-compact .exp-dt-prev, :where([dir="rtl"]) .exp-dt-backward .exp-dt-first, :where([dir="rtl"]) .exp-dt-forward .exp-dt-next { border-radius: 0 var(--a4-radius-s) var(--a4-radius-s) 0; }
+.exp-dt-pager-compact .exp-dt-next, .exp-dt-backward .exp-dt-prev, .exp-dt-forward .exp-dt-last { border-radius: 0 var(--a4-radius-s) var(--a4-radius-s) 0; margin-inline-start: -1px; }
+:where([dir="rtl"]) .exp-dt-pager-compact .exp-dt-next, :where([dir="rtl"]) .exp-dt-backward .exp-dt-prev, :where([dir="rtl"]) .exp-dt-forward .exp-dt-last { border-radius: var(--a4-radius-s) 0 0 var(--a4-radius-s); }
 .exp-dt-pager-compact .exp-dt-prev, .exp-dt-pager-compact .exp-dt-next { padding: 9px 16px; line-height: 20px; }
-.exp-dt-page { padding: 4px 8px; border: 1px solid #e4e4e4; border-radius: 2px; color: #333; font: inherit; }
-.exp-dt-page.exp-dt-current { border-color: #333; font-weight: 700; }
+.exp-dt-page { padding: 4px 8px; border: 1px solid #e4e4e4; border-radius: var(--a4-radius-s); color: #333; font: inherit; }
+.exp-dt-page.exp-dt-current { border-color: #333; font-weight: var(--a4-weight-bold); }
 
 /* the table itself */
 .exp-dt-table thead th {
-    padding: 10px; border: none; background: #a7a7a7; color: #fff; font-size: 11px; font-weight: 500;
+    padding: 10px; border: none; background: #a7a7a7; color: #fff; font-size: 11px; font-weight: var(--a4-weight-medium);
     text-transform: uppercase; line-height: 20px; vertical-align: middle;
 }
 .exp-dt-table thead th.exp-dt-sortable { padding: 0; }
 .exp-dt-table thead th.exp-dt-asc, .exp-dt-table thead th.exp-dt-desc { background: #919191; }
-.exp-dt-table thead th .exp-dt-sort { padding: 10px 26px 10px 10px; line-height: 20px; font-size: 11px; font-weight: 500; text-transform: uppercase; }
+.exp-dt-table thead th .exp-dt-sort { padding: 10px 26px 10px 10px; line-height: 20px; font-size: 11px; font-weight: var(--a4-weight-medium); text-transform: uppercase; }
 :where([dir="rtl"]) .exp-dt-table thead th .exp-dt-sort { padding: 10px 10px 10px 26px; }
 .exp-dt-table thead th .fa { font-size: 16px; }
 .exp-dt-body tr, .exp-dt-body tr:nth-child(even) { background: #fff; }
@@ -184,7 +184,7 @@ table th a:hover { color: #fff; text-decoration: underline; }
         top: 0; bottom: 0; inset-inline-start: 3px;
         width: 3px;
         background: transparent;
-        transition: background-color .15s;
+        transition: background-color var(--a4-duration);
     }
     .content-preview > .exp-adminui-details-resizer:hover::before,
     .content-preview > .exp-adminui-details-resizer.is-resizing::before { background: #2970ef; }
@@ -292,19 +292,19 @@ table th a:hover { color: #fff; text-decoration: underline; }
 #uiswitch-tool .a4-uiswitch-provider:first-child { margin-top: 0; }
 #uiswitch-tool .a4-stack { display: block; gap: 0; }
 #uiswitch-tool .a4-uiswitch-label {
-    display: block; margin: 0 0 6px; color: inherit; font-size: 14px; font-weight: 400; line-height: 1.42857143;
+    display: block; margin: 0 0 6px; color: inherit; font-size: 14px; font-weight: normal; line-height: 1.42857143;
 }
 #uiswitch-tool .a4-uiswitch-toggle[hidden], #uiswitch-tool .a4-uiswitch-menu[hidden] { display: none; }
 #uiswitch-tool .a4-uiswitch-menu { margin: 0; }
 /* the language list: the Cache dropdown's select.form-control.input-sm */
 #uiswitch-tool select.a4-input {
     display: block; width: 100%; height: 30px; min-height: 0; margin: 0 0 10px; padding: 5px 18px 5px 8px;
-    border: 1px solid #e8e8e8; border-radius: 2px;
+    border: 1px solid #e8e8e8; border-radius: var(--a4-radius-s);
     background: #f8f8f8 url(../images/select-bg.png) no-repeat right 5px center; background-size: contain;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.025);
     color: #555; font-family: inherit; font-size: 12px; line-height: 1.5;
     -webkit-appearance: none; -moz-appearance: none; appearance: none; cursor: pointer;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out var(--a4-duration), box-shadow ease-in-out var(--a4-duration);
 }
 :where([dir="rtl"]) #uiswitch-tool select.a4-input { padding: 5px 8px 5px 18px; }
 #uiswitch-tool select.a4-input:focus {
@@ -314,8 +314,8 @@ table th a:hover { color: #fff; text-decoration: underline; }
 /* its Apply button: the Cache dropdown's Clear button (btn btn-primary btn-sm) */
 #uiswitch-tool .a4-btn {
     display: inline-block; min-height: 0; margin: 0; padding: 5px 10px;
-    border: 1px solid #2970ef; border-radius: 3px; background-color: #2970ef; color: #fff;
-    font-family: inherit; font-size: 12px; font-weight: 400; line-height: 1.5; white-space: nowrap; cursor: pointer;
+    border: 1px solid #2970ef; border-radius: var(--a4-radius-s); background-color: #2970ef; color: #fff;
+    font-family: inherit; font-size: 12px; font-weight: normal; line-height: 1.5; white-space: nowrap; cursor: pointer;
 }
 #uiswitch-tool .a4-btn:hover:not([disabled]), #uiswitch-tool .a4-btn:focus { border-color: #0f53cc; background-color: #1057d5; color: #fff; }
 #uiswitch-tool .a4-btn:active { border-color: #0b3a8e; background-color: #0d49b4; box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
@@ -326,11 +326,11 @@ table th a:hover { color: #fff; text-decoration: underline; }
 #uiswitch-tool .a4-uiswitch-option {
     display: block; width: 100%; min-height: 24px; margin: 0; padding: 6px 10px;
     border: 0; border-radius: 0; background: transparent; box-shadow: none;
-    color: #fff; font-family: inherit; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: start; cursor: pointer;
+    color: #fff; font-family: inherit; font-size: 14px; font-weight: normal; line-height: 1.42857143; text-align: start; cursor: pointer;
 }
 #uiswitch-tool .a4-uiswitch-option:hover, #uiswitch-tool .a4-uiswitch-option:focus { background-color: #424242; color: #fff; outline: 0; }
 #uiswitch-tool .a4-uiswitch-option:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
-#uiswitch-tool .a4-uiswitch-option[aria-current="true"] { background-color: #606060; color: #fff; font-weight: 400; box-shadow: none; }
+#uiswitch-tool .a4-uiswitch-option[aria-current="true"] { background-color: #606060; color: #fff; font-weight: normal; box-shadow: none; }
 @media (forced-colors: active) {
     #uiswitch-tool .a4-uiswitch-option[aria-current="true"] { outline: 2px solid Highlight; outline-offset: -2px; }
 }
@@ -364,7 +364,7 @@ table th a:hover { color: #fff; text-decoration: underline; }
 .loginpage form .btn.aui-passkey-button {
     display: block; width: 100%; margin: 12px 0 0; padding: 11px;
     border: 1px solid #b3b3b3; border-radius: 0; background: transparent; color: #fff;
-    font-size: 16px; font-weight: 500;
+    font-size: 16px; font-weight: var(--a4-weight-medium);
 }
 .loginpage form .btn.aui-passkey-button:hover, .loginpage form .btn.aui-passkey-button:focus { border-color: #fff; background: #444444; color: #fff; }
 .loginpage form .btn.aui-passkey-button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
