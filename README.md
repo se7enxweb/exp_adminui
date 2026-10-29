@@ -321,7 +321,7 @@ attributes), and add or extend a test in `tests/` with a fix.
 
 ## License and credits
 
-Exponential Admin UI is Copyright (C) 2026 7x and licensed under the GNU General Public License v2.0 or (at your
+Exponential Admin UI is Copyright (C) 1998 - 2026 Exponential Foundation and 7x and licensed under the GNU General Public License v2.0 or (at your
 option) any later version. See [LICENSE](LICENSE).
 
 It is a port of **Netgen Admin UI** (Composer package `netgen/admin-ui-bundle`, used here from its fork
