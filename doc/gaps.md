@@ -4,7 +4,7 @@
 
 | Reference | Here | Why |
 |---|---|---|
-| Netgen Layouts admin (`/nglayouts/admin`, layout wizard, node "Layouts" tab with mappings) | Side bar "Layouts" opens Exponential Layouts (`explayouts_ui/dashboard`); the node tab is Exponential Layouts' own | The reference's pages are Symfony controllers of netgen/layouts; Exponential has its own layouts module |
+| The reference's layouts admin (`/nglayouts/admin`, layout wizard, node "Layouts" tab with mappings) | Side bar "Layouts" opens Exponential Layouts (`explayouts_ui/dashboard`); the node tab is Exponential Layouts' own | The reference's pages are Symfony controllers of netgen/layouts; Exponential has its own layouts module |
 | Netgen Tags admin (`/tags/admin/`) | Side bar "Tags" opens the eztags module (`tags/dashboard`), which the reference also has | The Symfony tags admin is not part of Exponential |
 | Information collection admin (`/netgen/informationcollection/overview`) | Side bar "Collected information" opens `infocollector/overview` | Symfony bundle |
 | Translations (`/translations/`, a Symfony message editor) | Not in the side bar | No Exponential equivalent; translation files are edited in the `.ts` files |
@@ -30,7 +30,7 @@
 
 ## Not ported
 
-- The reference's `tabs/nglayouts*.tpl` (a node tab that renders Netgen Layouts mappings through Symfony) is copied
+- The reference's `tabs/nglayouts*.tpl` (a node tab that renders the reference's layout mappings through Symfony) is copied
   but not switched on (`admininterface.ini` has no `AdditionalTabs[]=nglayouts`).
 - The YUI stand-ins of the reference's `page_head_script.html.twig` (`YUILoader`, `ContentStructureMenu`,
   `treeMenu` stubs). Nothing here uses YUI.

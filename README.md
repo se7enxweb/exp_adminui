@@ -269,7 +269,7 @@ and entries the user's policies allow (see the table under [Configuration](#conf
 
 ## Known limits
 
-- The reference's Symfony-backed pages (Netgen Layouts admin, Netgen Tags admin, the information collection admin,
+- The reference's Symfony-backed pages (the layouts admin, Netgen Tags admin, the information collection admin,
   the translations editor) are not part of Exponential. Their side bar entries open Exponential's own modules
   (`explayouts_ui`, `tags`, `infocollector`) instead.
 - Below 640 CSS pixels wide the page is covered by "The current window is too small", as in the reference.
