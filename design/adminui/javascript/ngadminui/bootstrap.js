@@ -618,7 +618,7 @@ if (typeof jQuery === 'undefined') {
 
     if (!$.support.transition) return complete.call(this)
 
-    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+    var scrollSize = 'scroll' + dimension.charAt(0).toUpperCase() + dimension.slice(1)
 
     this.$element
       .one('bsTransitionEnd', $.proxy(complete, this))
@@ -1299,7 +1299,7 @@ if (typeof jQuery === 'undefined') {
     this.type      = type
     this.$element  = $(element)
     this.options   = this.getOptions(options)
-    this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    this.$viewport = this.options.viewport && $(typeof this.options.viewport === 'function' ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
     this.inState   = { click: false, hover: false, focus: false }
 
     if (this.$element[0] instanceof document.constructor && !this.options.selector) {
@@ -1919,7 +1919,7 @@ if (typeof jQuery === 'undefined') {
     this.targets      = []
     this.scrollHeight = this.getScrollHeight()
 
-    if (!$.isWindow(this.$scrollElement[0])) {
+    if (!(this.$scrollElement[0] != null && this.$scrollElement[0] === this.$scrollElement[0].window)) {
       offsetMethod = 'position'
       offsetBase   = this.$scrollElement.scrollTop()
     }
