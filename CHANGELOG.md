@@ -3,6 +3,11 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.59 (2026-11-03)
+
+- Updated: The sign-in page keeps the view's passkey_options variable. The template redefined it and logged
+  "Variable 'passkey_options' is already defined" on every sign-in page; it now uses its own name.
+
 ## 1.0.0.58 (2026-11-03)
 
 - Updated: The search is the administration's search page (filter bar, chips, sorting, the search as view parameters); the design's own content/search.tpl and content/advancedsearch.tpl are gone. The header search is posted and suggests content, users, classes and admin pages while typing.
