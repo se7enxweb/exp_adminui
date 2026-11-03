@@ -3,6 +3,12 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.58 (2026-11-03)
+
+- Updated: The search is the administration's search page (filter bar, chips, sorting, the search as view parameters); the design's own content/search.tpl and content/advancedsearch.tpl are gone. The header search is posted and suggests content, users, classes and admin pages while typing.
+- Updated: Bootstrap's collapse, tooltip and scrollspy run without the jQuery APIs jQuery 4 removed, and the scripts bind and trigger events with .on() and .trigger().
+- Updated: The product is called Exponential Layouts in the documentation.
+
 ## 1.0.0.57 (2026-10-29)
 
 - Updated: One copyright notice, Exponential Foundation and 7x.
