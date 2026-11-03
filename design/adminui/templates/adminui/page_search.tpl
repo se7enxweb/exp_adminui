@@ -2,7 +2,7 @@
    Posted to content/search, which answers with a 303 to the search as view parameters (content/search/(text)/...).
    While the user types, the field suggests content, users, classes and admin pages under it, as in every admin
    design: the field is a combobox (parts/search_suggest.tpl, javascript/page/search_suggest.js and the
-   "Suggestions" block of modules/search.css, all from design/admin through the design chain; content/suggest;
+   "Suggestions" block of modules/search.css, all from design/standard; content/suggest;
    admininterface.ini [SearchSuggestSettings]); Ctrl+/ or Cmd+/ focuses it. Not in the browse mode, and not for a
    user who may not open content/suggest. *}
 {def $adminui_search_text = first_set( $search_text, '' )
