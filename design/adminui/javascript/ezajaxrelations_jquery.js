@@ -1,7 +1,7 @@
 jQuery(function( $ )
 {
     // Attache click event to search button and show input fields
-    $('.ezobject-relation-search-btn').click( _search ).removeClass('hide');
+    $('.ezobject-relation-search-btn').on( 'click', _search ).removeClass('hide');
 
     // Attache key press event to catch enter and show input fields
     $('input.ezobject-relation-search-text').on('keypress keydown keyup', function( e ){

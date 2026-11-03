@@ -577,12 +577,12 @@ $(document).ready(function () {
       const selected = trigger.filter(`[data-field-group="${groupId}"]`);
 
       if (selected.length) {
-        selected.click();
+        selected.trigger('click');
       } else {
-        trigger.eq(0).click();
+        trigger.eq(0).trigger('click');
       }
     } else {
-      trigger.eq(0).click();
+      trigger.eq(0).trigger('click');
     }
   }());
   /* */
@@ -619,7 +619,7 @@ $(document).ready(function () {
   });
 
   $('.form-siteaccess').on('change', 'select', function () {
-    $(this).closest('form').submit();
+    $(this).closest('form').trigger('submit');
   });
 
   /* edit path move */

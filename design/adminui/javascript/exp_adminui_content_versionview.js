@@ -67,7 +67,7 @@ $(document).ready(function(){
             localStorage.setItem('previewIframeH', frameH);
             switching(trigger, frameW, frameH);
         });
-        $(window).resize(function(){
+        $(window).on('resize', function(){
             if(containerDesign.hasClass('desktop')) {
                 var contW = containerDesign.width();
                 sizing(contW, contHeight());
