@@ -5371,7 +5371,7 @@ tags/dashboard.tpl are ported by hand without YUI, the others are served by admi
 | `templates/class/window_controls.tpl` | legacy design | copy | 3105 | `55437f8a20987820e73bd3b3b04b7b91c3ae5338cc4f52b438046b649410798e` |
 | `templates/class/windows.tpl` | legacy design | copy | 589 | `4f3d356e7baec3c0107dfbbb96b2481b35708b5eccc8c497abb2de696967477d` |
 | `templates/collaboration/view/summary.tpl` | legacy design | changed | 1878 | `01d2041ffd05184bd626849cd541bac4a30d6b510fb5b78b7a18af62e16cea26` |
-| `templates/content/advancedsearch.tpl` | legacy design | copy | 11534 | `67812fbe9426ef0665ce003fb05ae45b55727be4c88bac62d75881fe23b56527` |
+| `templates/content/advancedsearch.tpl` | legacy design | removed (the admin search page serves it, 1.0.0.58) | 11534 | `67812fbe9426ef0665ce003fb05ae45b55727be4c88bac62d75881fe23b56527` |
 | `templates/content/bookmark.tpl` | legacy design | changed | 4250 | `1796075f87a75d8399d67d38ab89d0272d642c88f6c8513fa0c86524b4de98ed` |
 | `templates/content/browse.tpl` | legacy design | changed | 9085 | `de2e91b85f7c921f496f363e6bf49ec4315ea621713716e458b2949f790f8bb9` |
 | `templates/content/browse_mode_list.tpl` | legacy design | changed | 6273 | `0dd18f8ed0a8471b336c8ed9e51052af5a7e3dd55bac2c602afb397e831f9f8d` |
@@ -5434,7 +5434,7 @@ tags/dashboard.tpl are ported by hand without YUI, the others are served by admi
 | `templates/content/parts/edit_states.tpl` | legacy design | copy | 1845 | `416099ba66a7eb1299978ea0eade0d6dbc55d0c04744f0da90f9ec9dc1e19a34` |
 | `templates/content/parts/object_information.tpl` | legacy design | copy | 2685 | `82822636d05d64c52fe8719a9c2115d2e1eed352af12e2e6d0be93977d179c50` |
 | `templates/content/restore.tpl` | legacy design | copy | 3319 | `bcaeeecb5ca2743fbca00763682e2b0ec0ebaee32c5f3aecb28c8a383aeafa2e` |
-| `templates/content/search.tpl` | legacy design | copy | 5181 | `a2c6591aa7269cfae16c8d61703847ef6c68d35febab86c2f82fcc31127453ee` |
+| `templates/content/search.tpl` | legacy design | removed (the admin search page serves it, 1.0.0.58) | 5181 | `a2c6591aa7269cfae16c8d61703847ef6c68d35febab86c2f82fcc31127453ee` |
 | `templates/content/translationnew.tpl` | legacy design | changed | 3691 | `c9b44fd8723270c9ecd7869e8588e3d8b390926616bb8ea503a2760130865418` |
 | `templates/content/translations.tpl` | legacy design | changed | 3913 | `69ea56d77794a8bce42eeec3a29f2507d0c0dfe5cb95aa90535524707406de7d` |
 | `templates/content/translationview.tpl` | legacy design | changed | 13099 | `6066301067d12510acac38c8075da7e70fd4725597e093b2d8aa46ddc7074795` |

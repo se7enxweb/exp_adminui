@@ -13,7 +13,7 @@ list of templates with their origin is [templates.md](templates.md). Status per 
 | Head: favicons, menu sizes | `adminui/page_head.tpl` | ported from `page_head.html.twig` |
 | Stylesheets | `page_head_style.tpl` | ported from `page_head_style.html.twig` |
 | Scripts | `page_head_script.tpl` | ported from `page_head_script.html.twig` |
-| Header search | `adminui/parts/search_box.tpl`, `adminui/page_search.tpl` | ported |
+| Header search | `adminui/parts/search_box.tpl`, `adminui/page_search.tpl` (posted; suggestions while typing) | ported |
 | Header Help control | `adminui/parts/help_button.tpl` | new: the help page of the module and view on screen (kernel help system, `fetch( 'exphelp', 'context' )`), shown only with the exphelp module and the exphelp/read policy |
 | Side bar menu | `adminui/menu/aside.tpl`, `menu/plugins/legacy/aside.tpl` | ported from the menu plugins |
 | Side bar Cache dropdown | `setup/clear_cache.tpl` | Admin UI template, merged |
@@ -38,7 +38,7 @@ list of templates with their origin is [templates.md](templates.md). Status per 
 | Version preview, history | `/content/versionview/...`, `/content/history/<id>` | `content/view/versionview.tpl`, `content/history.tpl` | merged |
 | Trash | `/content/trash` | `content/trash.tpl` | Exponential's trash in the Admin UI frame |
 | Bookmarks, drafts, pending | `/content/bookmark`, `/content/draft`, `/content/pendinglist` | `content/bookmark.tpl`, `content/draft.tpl` | merged / copy |
-| Search | `/content/search` | `content/search.tpl`, `content/advancedsearch.tpl` | Admin UI templates |
+| Search | `/content/search`, `/content/advancedsearch` (redirects) | none of its own: the search page of every admin design, through the design chain (filter bar, chips, sort, view parameters) | shared |
 | Browse (choose a node) | `/content/browse` | `content/browse*.tpl` | merged |
 | Languages | `/content/translations` | `content/translations.tpl`, `translationnew.tpl`, `translationview.tpl` | Exponential's rewrite in the Admin UI frame |
 | URL translator, wildcards | `/content/urltranslator`, `/content/urlwildcards` | `content/urlalias_*.tpl` | merged / copy |

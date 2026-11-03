@@ -29,6 +29,12 @@ table.list td.aui-flush, .aui-flush { padding: 0; }
 img.user-avatar.aui-avatar { object-fit: cover; }
 .user-dropdown img.user-avatar.aui-avatar { display: block; height: auto; padding: 0; aspect-ratio: 1 / 1; }
 
+/* The header search (adminui/parts/search_box.tpl): style.css clips the box (overflow: hidden), which would cut off
+   the suggestions under the field (.a4-suggest, design/admin's modules/search.css); the list hangs from the field's
+   line and keeps inside a narrow window. */
+.search-form.aui-search-box { overflow: visible; z-index: var(--a4-z-popover); }
+.search-form.aui-search-box .a4-suggest { top: 100%; inset-inline-start: var(--a4-space-3); }
+
 /* The content edit page's right column folded away (the preference admin_edit_menu_collapsed); the toggle's script
    sets the margin while the page is open. */
 .rightmenu.aui-edit-menu.closed { margin-right: -222px; }

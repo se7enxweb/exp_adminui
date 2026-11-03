@@ -57,7 +57,7 @@ only adminui has it). Generated from the files; see merging.md for how "merged" 
 | `class/window_controls.tpl` | copy | `design/admin4` |
 | `class/windows.tpl` | copy | `design/admin4` |
 | `collaboration/view/summary.tpl` | merged | `design/admin4` |
-| `content/advancedsearch.tpl` | copy | `design/admin4` |
+| `content/advancedsearch.tpl` | none: design/admin's page through the design chain | |
 | `content/bookmark.tpl` | merged | `design/admin4` |
 | `content/browse.tpl` | merged | `design/admin4` |
 | `content/browse_mode_list.tpl` | merged | `design/admin4` |
@@ -121,7 +121,7 @@ only adminui has it). Generated from the files; see merging.md for how "merged" 
 | `content/parts/edit_states.tpl` | copy | `design/admin4` |
 | `content/parts/object_information.tpl` | copy | `design/admin4` |
 | `content/restore.tpl` | copy | `design/admin4` |
-| `content/search.tpl` | copy | `design/admin4` |
+| `content/search.tpl` | none: admin4's, which shows design/admin's page | |
 | `content/translationnew.tpl` | merged | `design/admin4` |
 | `content/translations.tpl` | merged | `design/admin4` |
 | `content/translationview.tpl` | merged | `design/admin4` |
