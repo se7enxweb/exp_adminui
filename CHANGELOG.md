@@ -3,6 +3,10 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.62 (2026-11-04)
+
+- Added: The header's Help button is marked on the help's own pages (exphelp/*), as admin4 marks its "?"; the help views draw the kernel's help menu (menu.ini [Leftmenu_help]) in the left column.
+
 ## 1.0.0.61 (2026-11-04)
 
 - Added: The left menu reads menu.ini CollapseAfter=<n>: the first <n> links show, the rest follow in a "More (count)" disclosure, open when it holds the current page (the kernel's Dashboard menu sets 10).
