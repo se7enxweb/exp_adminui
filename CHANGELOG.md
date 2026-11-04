@@ -3,6 +3,10 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.61 (2026-11-04)
+
+- Added: The left menu reads menu.ini CollapseAfter=<n>: the first <n> links show, the rest follow in a "More (count)" disclosure, open when it holds the current page (the kernel's Dashboard menu sets 10).
+
 ## 1.0.0.60 (2026-11-03)
 
 - Updated: The system upgrade page and the role wizard's policy hint name Exponential, in the kernel's wording that every catalogue translates.
