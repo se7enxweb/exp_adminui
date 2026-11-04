@@ -26,7 +26,8 @@
                                                                       'view', first_set( $adminui_help_mp.function_name, '' ),
                                                                       'design', ezini( 'DesignSettings', 'SiteDesign', 'site.ini' ) ) )}
 {/if}
-<div class="aui-help">
+{* marked on the help's own pages (exphelp/*), as the admin4 header marks its "?" *}
+<div class="aui-help{if eq( first_set( $adminui_help_mp.module_name, '' ), 'exphelp' )} is-current{/if}">
 {if $adminui_help_menu}
     {def $adminui_help_names = hash( 'getting_started',    'Getting started'|i18n( 'kernel/exphelp' ),
                                      'keyboard_shortcuts', 'Keyboard shortcuts'|i18n( 'kernel/exphelp' ),

@@ -633,6 +633,8 @@ table.list td.rss-uri code {
 .aui-help-btn .fa { font-size: 1.3em; }
 .aui-help-btn:hover, .aui-help-btn:focus { color: var(--a4-accent-text); background: var(--a4-accent-soft); text-decoration: none; }
 .aui-help-btn:focus-visible { outline: 3px solid var(--a4-ring); outline-offset: 2px; }
+/* on the help's own pages (exphelp/*): the control is the current place, marked as an open menu is */
+.aui-help.is-current .aui-help-btn { color: var(--a4-accent-text); background: var(--a4-accent-soft); }
 /* The Help menu (a <details> disclosure; the browser opens and closes it without a script): the summary looks like
    the link, the panel hangs under the header at its end edge, above the page */
 .aui-help { position: relative; }
