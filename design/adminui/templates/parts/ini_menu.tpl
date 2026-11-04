@@ -15,6 +15,9 @@
    TrailLinks[] (optional, menu.ini) names links of the section drawn after all its other links, in the order
    TrailLinks[] names them, also after the links extensions append (the Dashboard menu's Change password and Edit
    profile). Access is checked as for every link; a key the user may not open is left out as always.
+   CollapseAfter=<n> (optional, menu.ini): the menu shows its first <n> links, in the order drawn (the trail links
+   last), and the rest in a "More (count)" disclosure below them, closed at first and open when it holds the current
+   page. Without it, or with 0, every link shows.
 *}
 
 {if is_unset( $ini_section )}
@@ -169,8 +172,23 @@
 
         {* DESIGN: Content START *}
 
+        {* CollapseAfter: the first links, then the rest in a "More" disclosure, open when it holds the current page *}
+        {def $collapse_after = 0
+             $im_parts = array( $items )
+             $im_more_open = false()}
+        {if ezini_hasvariable( $ini_section, 'CollapseAfter', 'menu.ini' )}
+            {set $collapse_after = ezini( $ini_section, 'CollapseAfter', 'menu.ini' )}
+        {/if}
+        {if and( $collapse_after|gt( 0 ), $items|count|gt( $collapse_after ) )}
+            {set $im_parts = array( $items|extract_left( $collapse_after ), $items|extract( $collapse_after ) )}
+            {foreach $im_parts[1] as $item}
+                {if and( eq( $item.state, 'link' ), $current_uri_string|begins_with( $item.url ) )}{set $im_more_open = true()}{/if}
+            {/foreach}
+        {/if}
+        {foreach $im_parts as $im_part_index => $im_part}
+        {if $im_part_index}<details class="leftmenu-more"{if $im_more_open} open{/if}><summary>{'More'|i18n( 'design/admin/pagelayout' )|wash} ({$im_part|count})</summary>{/if}
         <ul class="leftmenu-items-list">
-        {foreach $items as $item}
+        {foreach $im_part as $item}
             {if eq( $item.state, 'disabled' )}
                 <li><span class="disabled">{$item.name}</span></li>
             {elseif eq( $item.state, 'link' )}
@@ -180,6 +198,9 @@
             {/if}
         {/foreach}
         </ul>
+        {if $im_part_index}</details>{/if}
+        {/foreach}
+        {undef $collapse_after $im_parts $im_more_open}
 
         {* DESIGN: Content END *}
     {/if}
