@@ -3,6 +3,12 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.60 (2026-11-03)
+
+- Updated: The system upgrade page and the role wizard's policy hint name Exponential, in the kernel's wording that every catalogue translates.
+- Added: A German catalogue for the 102 texts of the design that the kernel's catalogue does not translate (menus, sign-in page, block editor, class and content views, preview panel).
+- Updated: The image datatype's class edit template asks for 'Max file size' in the kernel's context (it had a trailing space).
+
 ## 1.0.0.59 (2026-11-03)
 
 - Updated: The sign-in page keeps the view's passkey_options variable. The template redefined it and logged
