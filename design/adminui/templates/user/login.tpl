@@ -61,6 +61,17 @@
         <p class="alert alert-info aui-passkey-status" data-exp-passkey-status="1" role="status" aria-live="polite" hidden="hidden"></p>
         {/if}
     </form>
+    {* "Forgot your password?" and "Register new account", as in the admin designs' sign-in form: only where the view
+       exists and this visitor may open it (policy omit list or the user/password, user/register policy) *}
+    {def $login_forgot   = and( ezmodule( 'user/forgotpassword' ), fetch( 'user', 'can_open', hash( 'uri', 'user/forgotpassword' ) ) )
+         $login_register = and( ezmodule( 'user/register' ), fetch( 'user', 'can_open', hash( 'uri', 'user/register' ) ) )}
+    {if or( $login_forgot, $login_register )}
+    <p class="aui-login-links">
+        {if $login_forgot}<a href={'/user/forgotpassword'|ezurl}>{'Forgot your password?'|i18n( 'design/admin/user/login' )}</a>{/if}
+        {if $login_register}<a href={'/user/register'|ezurl}>{'Register new account'|i18n( 'design/admin/user/login' )}</a>{/if}
+    </p>
+    {/if}
+    {undef $login_forgot $login_register}
     {* The social login buttons of sevenx_authentication_2fa, where that extension is active and enables a provider *}
     {if ezmodule( 'user2fa/oauth' )}
         {include uri='design:user2fa/exp_style.tpl'}

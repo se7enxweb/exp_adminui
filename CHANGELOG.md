@@ -3,6 +3,10 @@
 Releases of Exponential Admin UI (exp_adminui). Older releases are described on the
 [GitHub releases page](https://github.com/se7enxweb/exp_adminui/releases).
 
+## 1.0.0.63 (2026-11-12)
+
+- Updated: The pages a visitor sees before signing in look like the sign-in page: user/forgotpassword, user/success, user/activate and user/register have templates of their own in the adminui design (they were drawn with admin4's templates without admin4's stylesheets: no frame, full width, white buttons on white), and the sign-in page links "Forgot your password?" and "Register new account" when the visitor may open them. The placeholders and the register form's texts are readable on the dark background, and the register page loads jQuery for its field groups (before: "jQuery is not defined").
+
 ## 1.0.0.62 (2026-11-04)
 
 - Added: The header's Help button is marked on the help's own pages (exphelp/*), as admin4 marks its "?"; the help views draw the kernel's help menu (menu.ini [Leftmenu_help]) in the left column.

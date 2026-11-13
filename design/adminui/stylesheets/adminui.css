@@ -370,3 +370,44 @@ table th a:hover { color: #fff; text-decoration: underline; }
 .loginpage form .btn.aui-passkey-button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 .loginpage form .aui-passkey-status { margin: 12px 0 0; }
 .loginpage form [hidden] { display: none !important; }
+
+/* ---- The other steps of signing in (user/forgotpassword.tpl, user/register.tpl, user/success.tpl,
+   user/activate.tpl): the frame of user/login.tpl (.login-container with the logo) and its dark fields and full-width
+   button, a title under the logo, the text in white, links under the form. Without these templates the admin designs'
+   ones were shown without a frame, full width, with a light header and white-on-white buttons. The frame has one
+   (dark) look, so there is no dark value to set. #b3b3b3 on #383838 is 5.4:1, white 11.6:1. */
+.loginpage .login-header .aui-login-title { margin: 0; font-size: 23px; font-weight: 700; line-height: 1.3; color: #fff; }
+.loginpage .aui-login-text { margin: 0 0 20px; color: #fff; }
+.loginpage .aui-login-text p { margin: 0 0 10px; }
+.loginpage .aui-login-label { display: block; margin: 0 0 6px; font-weight: 500; color: #fff; }
+.loginpage form .form-control.aui-login-plain,
+.loginpage .aui-register-form .form-control { padding-left: 12px; }
+.loginpage form .form-control.aui-login-plain[aria-invalid="true"] { box-shadow: inset 0 0 0 2px #f0ad4e; }
+.loginpage .aui-login-links { margin: 0 0 30px; text-align: center; color: #b3b3b3; }
+.loginpage .aui-login-links a { display: inline-block; margin: 0 10px 6px; color: #fff; text-decoration: underline; }
+.loginpage .aui-login-links a:hover, .loginpage .aui-login-links a:focus { color: #fff; text-decoration: none; }
+/* the next step as a link ("Sign in"): the look of the sign-in button */
+.loginpage .btn.btn-primary.aui-login-button {
+    display: block; width: 100%; margin: 10px 0 30px; padding: 11px; border: 0; border-radius: 0;
+    background: var(--a4-accent-strong); color: var(--a4-on-accent, #fff);
+    font-size: 16px; font-weight: 500; text-transform: uppercase; text-align: center; text-decoration: none;
+}
+.loginpage .btn.btn-primary.aui-login-button:hover, .loginpage .btn.btn-primary.aui-login-button:focus { background: var(--a4-accent-press); color: var(--a4-on-accent, #fff); }
+.loginpage .btn.btn-primary.aui-login-button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+/* registration: wider, for the account's fields; Cancel outlined like "Sign in with a passkey" */
+.loginpage .login-container.aui-login-wide { max-width: 760px; }
+.loginpage .aui-login-actions { margin: 20px 0 0; }
+.loginpage form .aui-login-actions .btn.btn-default {
+    display: block; width: 100%; margin: 12px 0 0; padding: 11px;
+    border: 1px solid #b3b3b3; border-radius: 0; background: transparent; color: #fff; font-size: 16px;
+}
+.loginpage form .aui-login-actions .btn.btn-default:hover, .loginpage form .aui-login-actions .btn.btn-default:focus { border-color: #fff; background: #444444; color: #fff; }
+.loginpage form .aui-login-actions .btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.loginpage .aui-register-form label, .loginpage .aui-register-form legend { color: #fff; }
+/* the placeholders of the dark fields: style.css's #7b7b7b was 2.9:1 on #444444; #b3b3b3 is 4.7:1 */
+.loginpage form .form-control::placeholder { color: #b3b3b3; opacity: 1; }
+/* the two-factor field of the registration form (sevenx_authentication_2fa): its light-page ink and muted grey
+   (--tf-*) were dark text on the frame's dark grey; here its text takes the frame's white and #b3b3b3 */
+.loginpage .aui-register-form .exp-2fa { --tf-ink: #fff; --tf-muted: #b3b3b3; --tf-line: #5a5a5a; }
+/* the required mark and the image field's "There is no image file." took style.css's #333 for a light page */
+.loginpage .aui-register-form .required, .loginpage .aui-register-form p { color: #fff; }
