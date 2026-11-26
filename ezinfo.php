@@ -12,7 +12,7 @@ class exp_adminuiInfo
             'Name'      => '<a href="https://github.com/se7enxweb/exp_adminui">Exponential Admin UI : the Netgen Admin UI look for the Exponential administration</a>',
             'Version'   => "1.0.0.63",
             'Author'    => '7x',
-            'Copyright' => 'Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved. Design ported from Netgen Admin UI, Copyright &copy; Netgen',
+            'Copyright' => 'Copyright (C) 1998 - 2026 Exponential Foundation and 7x; All rights reserved. Design ported from Netgen Admin UI, Copyright &copy; Netgen',
             'License'   => "GNU General Public License v2.0 (or any later version)",
             'Info_url'  => 'https://github.com/se7enxweb/exp_adminui',
             'Includes the following third-party software' => array(
